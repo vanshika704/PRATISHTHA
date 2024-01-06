@@ -37,6 +37,7 @@ Create a community feature where users can share safety tips, information about 
 Feedback and Ratings:
 
 Implement a feedback system to gather user opinions and ratings, which can help you improve the app and its services.
+we can add cyber security contact so that the people facing crimes related to internet can esily seek right guidance without leakage of data and keeping the data confidential.
 Integration with Emergency Services:
 
 Explore the possibility of integrating with local emergency services to ensure a quick response when needed.
