@@ -3,7 +3,7 @@
 A new Flutter project.
 
 ## Getting Started
-This app is basically designed to provide some police regarding services at home .One can easily get assistance regarding the FIR , penal codes etc .//...
+This app is basically designed to provide some police regarding services at home .One can easily get assistance regarding the FIR , penal codes etc .//..
 further i am looking foreward to add the following features in the app.
 **User Authentication and Profiles:**
 
