@@ -2,7 +2,7 @@ import 'package:PRATISHTHA/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -39,13 +39,22 @@ class _SignupState extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text('SIGN UP'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => LoginPage());
+            },
+            icon: Icon(Icons.person),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [ Image.asset("assets/emblem.jpg"),
+          children: [
+            Image.asset("assets/emblem.jpg"),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(labelText: 'Email'),
@@ -64,6 +73,29 @@ class _SignupState extends State<Signup> {
           ],
         ),
       ),
+    );
+  }
+}
+
+Future<bool> checkIfLoggedIn() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? authToken = prefs.getString('authToken');
+  return authToken != null;
+}
+
+class AutoLoginCheck extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: checkIfLoggedIn(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+         
+          return snapshot.data! ? MyHomePage() : LoginPage();
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
     );
   }
 }
