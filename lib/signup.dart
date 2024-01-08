@@ -1,8 +1,10 @@
-import 'package:PRATISHTHA/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'login.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -13,12 +15,14 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
 
   Future<void> _signUpWithEmailAndPassword() async {
     try {
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
@@ -32,6 +36,37 @@ class _SignupState extends State<Signup> {
       Get.off(LoginPage());
     } on FirebaseAuthException catch (e) {
       print("Error: $e");
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      print("Signed in with Google: ${userCredential.user?.displayName}");
+
+     
+      Get.snackbar(
+        "Success",
+        "Signed in with Google successfully",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(seconds: 2),
+      );
+
+    
+    } catch (e) {
+      print("Error signing in with Google: $e");
     }
   }
 
@@ -70,6 +105,11 @@ class _SignupState extends State<Signup> {
               onPressed: _signUpWithEmailAndPassword,
               child: Text('Sign Up'),
             ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: _signInWithGoogle,
+              child: Text('Sign In with Google'),
+            ),
           ],
         ),
       ),
@@ -90,7 +130,6 @@ class AutoLoginCheck extends StatelessWidget {
       future: checkIfLoggedIn(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-         
           return snapshot.data! ? MyHomePage() : LoginPage();
         } else {
           return CircularProgressIndicator();
