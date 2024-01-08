@@ -27,7 +27,7 @@ class _SignupState extends State<Signup> {
         "Success",
         "Signed up successfully",
         snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 3),
+        duration: Duration(seconds: 2),
       );
       Get.off(LoginPage());
     } on FirebaseAuthException catch (e) {
