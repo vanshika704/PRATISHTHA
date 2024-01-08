@@ -101,12 +101,12 @@ class _SignupState extends State<Signup> {
               obscureText: true,
             ),
             SizedBox(height: 16),
-            ElevatedButton(
+            ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 6, 31, 51)) ),
               onPressed: _signUpWithEmailAndPassword,
               child: Text('Sign Up'),
             ),
             SizedBox(height: 16),
-            ElevatedButton(
+            ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 6, 31, 51)) ),
               onPressed: _signInWithGoogle,
               child: Text('Sign In with Google'),
             ),
