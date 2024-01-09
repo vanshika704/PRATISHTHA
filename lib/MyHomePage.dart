@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: [
                 IPC(),
-                
+                SOS()
               ],
             ),
           ),
@@ -48,7 +48,7 @@ class _IPCState extends State<IPC> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,width: 300,
+      height: 60,width: 300,
        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
@@ -92,7 +92,7 @@ class _SOSState extends State<SOS> {
   @override
   Widget build(BuildContext context) {
      return Container(
-      height: 80,width: 300,
+      height: 60,width: 300,
        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
@@ -100,7 +100,7 @@ class _SOSState extends State<SOS> {
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
-            "Indian Penal Code",
+            "SOS",
             style: TextStyle(
               color: Color.fromARGB(255, 10, 11, 12),
               fontStyle: FontStyle.italic,
