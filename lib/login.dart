@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'MyHomePage.dart';
+
 
 
 class LoginPage extends StatefulWidget {
@@ -125,19 +127,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Text('Welcome to the Home Page!'),
-      ),
-    );
-  }
-}
+
 
 class GoogleSignInButton extends StatelessWidget {
   final VoidCallback onPressed;
