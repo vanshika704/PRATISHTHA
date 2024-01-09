@@ -1,16 +1,9 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
-
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'MyHomePage.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -94,44 +87,61 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
+      appBar: AppBar(
+        title: Text('PRATISHTHA'),
+        backgroundColor: Color.fromARGB(255, 3, 122, 102),
+      ),
+      body: Stack(
+        children: [
+          Center(
+            child: Image.asset(
               'assets/emblem.jpg',
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
+              height: 400,
             ),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: _signInWithEmailAndPassword,
+                  child: Text('Login with Email/Password'),
+                ),
+                SizedBox(height: 16),
+                GoogleSignInButton(onPressed: _handleGoogleSignIn),
+              ],
             ),
-            SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _signInWithEmailAndPassword,
-              child: Text('Login with Email/Password'),
-            ),
-            SizedBox(height: 16),
-            GoogleSignInButton(onPressed: _handleGoogleSignIn),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-
-
 class GoogleSignInButton extends StatelessWidget {
   final VoidCallback onPressed;
-  
+
   GoogleSignInButton({required this.onPressed});
 
   @override
