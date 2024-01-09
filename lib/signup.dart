@@ -92,6 +92,7 @@ class _SignupState extends State<Signup> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("assets/emblem.jpg",fit: BoxFit.fill,),
+              
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(labelText: 'Email'),
@@ -111,7 +112,9 @@ class _SignupState extends State<Signup> {
               ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 3, 122, 102)) ),
                 onPressed: _signInWithGoogle,
                 child: Text('Sign In with Google'),
+                
               ),
+              
             ],
           ),
         ),
