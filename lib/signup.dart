@@ -87,31 +87,33 @@ class _SignupState extends State<Signup> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset("assets/emblem.jpg"),
-            TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 6, 31, 51)) ),
-              onPressed: _signUpWithEmailAndPassword,
-              child: Text('Sign Up'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 6, 31, 51)) ),
-              onPressed: _signInWithGoogle,
-              child: Text('Sign In with Google'),
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/emblem.jpg",fit: BoxFit.fill,),
+              TextField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+              SizedBox(height: 16),
+              ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 3, 122, 102)) ),
+                onPressed: _signUpWithEmailAndPassword,
+                child: Text('Sign Up'),
+              ),
+              SizedBox(height: 16),
+              ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 3, 122, 102)) ),
+                onPressed: _signInWithGoogle,
+                child: Text('Sign In with Google'),
+              ),
+            ],
+          ),
         ),
       ),
     );
