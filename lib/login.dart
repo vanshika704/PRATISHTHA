@@ -124,7 +124,9 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                 ),
                 SizedBox(height: 16),
-                ElevatedButton(
+                ElevatedButton( style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+      Color.fromARGB(255, 3, 122, 102),)
+    ),
                   onPressed: _signInWithEmailAndPassword,
                   child: Text('Login with Email/Password'),
                 ),
@@ -146,7 +148,9 @@ class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return ElevatedButton( style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(
+      Color.fromARGB(255, 3, 122, 102),)
+    ),
       onPressed: onPressed,
       child: Text('Sign in with Google'),
     );
