@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PRATISHTHA'),
+        title: Text('LOGIN'),
         backgroundColor: Color.fromARGB(255, 3, 122, 102),
       ),
       body: Stack(
