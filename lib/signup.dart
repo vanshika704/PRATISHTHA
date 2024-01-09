@@ -74,7 +74,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor:  Color.fromARGB(255, 3, 122, 102),
         title: Text('SIGN UP'),
         actions: [
           IconButton(
