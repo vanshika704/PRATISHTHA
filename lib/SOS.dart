@@ -17,12 +17,15 @@ class _SOSbuttonState extends State<SOSbutton> {
         backgroundColor: Color.fromARGB(255, 3, 164, 185),
         titleTextStyle: TextStyle(color: Colors.black, height: 10),
       ),
-      body: ElevatedButton(
-        onPressed: () {
-         
-          Get.to(() => EmergencyButtonScreen());
-        },
-        child: Text("HELP!!!!"),
+      body:  Column(
+        children:[ Image.asset("assets/police.webp",fit: BoxFit.fill,),
+          ElevatedButton(
+          onPressed: () {
+           
+            Get.to(() => EmergencyButtonScreen());
+          },
+          child: Text("HELP!!!!"),
+        ),]
       ),
     );
   }
