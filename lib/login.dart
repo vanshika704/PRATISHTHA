@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'MyHomePage.dart';
+import 'signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,6 +17,15 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
+  final OnboardController _onboardController = Get.find<OnboardController>();
+  @override
+  void initState() {
+    super.initState();
+
+    
+    _onboardController.checkLoggedIn();
+  }
+
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
 
   Future<void> _signInWithEmailAndPassword() async {
