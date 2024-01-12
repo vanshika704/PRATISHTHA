@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,7 +38,6 @@ class CustomOutlinedButton extends StatelessWidget {
   }
 }
 
-
 Widget bottomSheetBuilder(BuildContext context) {
   Size deviceSize = MediaQuery.of(context).size;
 
@@ -79,14 +77,12 @@ Widget bottomSheetBuilder(BuildContext context) {
                 CustomOutlinedButton(
                   deviceSize: deviceSize,
                   title: "NGOs",
-                  onTap: () {
-                  },
+                  onTap: () {},
                 ),
                 CustomOutlinedButton(
                   deviceSize: deviceSize,
                   title: "Citizen",
-                  onTap: () {
-                  },
+                  onTap: () {},
                 ),
               ],
             ),
@@ -104,7 +100,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
   clearLogin() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -125,14 +120,9 @@ class _SplashPageState extends State<SplashPage> {
                 vertical: deviceSize.height / 30),
             child: Row(
               children: [
-                Icon(
-                  Icons.water_drop,
-                  color: Colors.blue.shade700,
-                  size: 28,
-                ),
                 SizedBox(width: 10),
                 Text(
-                  "Aqua Watch",
+                  "PRATISHTHA",
                   style: GoogleFonts.lexend(
                     fontWeight: FontWeight.w600,
                     fontSize: 28,
@@ -143,13 +133,14 @@ class _SplashPageState extends State<SplashPage> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: 0,
-                left: deviceSize.width / 25,
-                right: deviceSize.width / 25,
-                bottom: 0),
-            child: Image.asset(
-              "assets/splashimage.png",
-              height: deviceSize.height / 2.5,
+                
+                ),
+            child: Positioned.fill(
+              child: Image.asset(
+                "assets/lawyer.jpg",
+               height: 250,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Padding(
@@ -163,9 +154,18 @@ class _SplashPageState extends State<SplashPage> {
                     fontWeight: FontWeight.w600,
                     fontSize: getAdjustedPixelRatio(context) * 14.2),
                 children: const [
-                  TextSpan(text: "An app for all your "),
-                  TextSpan(text: "water", style: TextStyle(color: Colors.blue)),
-                  TextSpan(text: " related problems!")
+                  TextSpan(
+                      text: "Legal assistance in your phone!!!\n ",
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 10, 12, 12),fontSize: 30)),
+                  TextSpan(
+                      text: "Lawyers and clients\n",
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 3, 3, 3),fontSize: 30)),
+                  TextSpan(
+                      text: " on one platform\n",
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 8, 8, 8),fontSize: 30))
                 ])),
           ),
           Padding(
@@ -182,16 +182,18 @@ class _SplashPageState extends State<SplashPage> {
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20))));
                   },
-                  child: Container(
-                    width: deviceSize.width / 3.5,
-                    height: deviceSize.height / 20,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade900,
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Center(
-                      child: Text(
-                        "Start",
-                        style: TextStyle(color: Colors.white, fontSize: 17),
+                  child: Center(
+                    child: Container(
+                      width: deviceSize.width / 4.5,
+                      height: deviceSize.height / 20,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade900,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Center(
+                        child: Text(
+                          "Start",
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
                       ),
                     ),
                   ),
@@ -206,14 +208,13 @@ class _SplashPageState extends State<SplashPage> {
                     bottom: deviceSize.height / 90),
                 child: Text.rich(TextSpan(
                     style: GoogleFonts.lexend(
-                        fontSize:
-                            getAdjustedPixelRatio(context) * 5.5),
+                        fontSize: getAdjustedPixelRatio(context) * 5.5),
                     children: const [
                       TextSpan(text: "Developed with "),
                       TextSpan(text: "❤️", style: TextStyle(color: Colors.red)),
                       TextSpan(text: " By "),
                       TextSpan(
-                          text: "Cyber Crew",
+                          text: "Ashwathama",
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ])),
               ),
