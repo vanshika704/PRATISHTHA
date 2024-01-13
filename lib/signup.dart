@@ -15,15 +15,11 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
-  final OnboardController _onboardController = Get.find<OnboardController>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
  @override
   void initState() {
     super.initState();
-
-    
-    _onboardController.checkLoggedIn();
   }
 
   
@@ -81,13 +77,13 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 3, 122, 102),
-        title: Text('SIGN UP'),
+        title: Text('SIGN UP', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             onPressed: () {
               Get.to(() => LoginPage());
             },
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, color: Colors.white,),
           ),
         ],
       ),
@@ -117,7 +113,7 @@ class _SignupState extends State<Signup> {
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 3, 122, 102))),
                 onPressed: _signUpWithEmailAndPassword,
-                child: Text('Sign Up'),
+                child: Text('Sign Up', style: TextStyle(color: Colors.white),),
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -125,7 +121,7 @@ class _SignupState extends State<Signup> {
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 3, 122, 102))),
                 onPressed: _signInWithGoogle,
-                child: Text('Sign In with Google'),
+                child: Text('Sign In with Google', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

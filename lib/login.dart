@@ -17,13 +17,10 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
-  final OnboardController _onboardController = Get.find<OnboardController>();
   @override
   void initState() {
     super.initState();
 
-    
-    _onboardController.checkLoggedIn();
   }
 
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -98,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LOGIN'),
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text('LOGIN', style: TextStyle(color: Colors.white)),
         backgroundColor: Color.fromARGB(255, 3, 122, 102),
       ),
       body: Stack(
@@ -108,6 +106,8 @@ class _LoginPageState extends State<LoginPage> {
               'assets/emblem.jpg',
               fit: BoxFit.fill,
               height: 400,
+              colorBlendMode: BlendMode.dstATop,
+              color: Colors.white.withOpacity(0.2),
             ),
           ),
           Padding(
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: _signInWithEmailAndPassword,
-                  child: Text('Login with Email/Password'),
+                  child: Text('Login with Email/Password', style: TextStyle(color: Colors.white)),
                 ),
                 SizedBox(height: 16),
                 ElevatedButton(
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: _handleGoogleSignIn,
-                  child: Text('Sign in with Google'),
+                  child: Text('Sign in with Google', style: TextStyle(color: Colors.white),),
                 ),
               ],
             ),

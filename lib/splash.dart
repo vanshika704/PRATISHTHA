@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './util.dart';
@@ -63,7 +64,7 @@ Widget bottomSheetBuilder(BuildContext context) {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Choose Your Side",
+                "You are?",
                 style: GoogleFonts.lexend(
                     fontWeight: FontWeight.w500,
                     fontSize: getAdjustedPixelRatio(context) * 8),
@@ -76,13 +77,17 @@ Widget bottomSheetBuilder(BuildContext context) {
               children: [
                 CustomOutlinedButton(
                   deviceSize: deviceSize,
-                  title: "NGOs",
-                  onTap: () {},
+                  title: "Lawyer",
+                  onTap: () {
+                    Get.toNamed("/signup");
+                  },
                 ),
                 CustomOutlinedButton(
                   deviceSize: deviceSize,
                   title: "Citizen",
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed("/signup");
+                  },
                 ),
               ],
             ),
@@ -137,7 +142,7 @@ class _SplashPageState extends State<SplashPage> {
                 ),
             child: Positioned.fill(
               child: Image.asset(
-                "assets/lawyer.jpg",
+                "assets/justice.png",
                height: 250,
                 fit: BoxFit.fill,
               ),
@@ -155,24 +160,25 @@ class _SplashPageState extends State<SplashPage> {
                     fontSize: getAdjustedPixelRatio(context) * 14.2),
                 children: const [
                   TextSpan(
-                      text: "Legal assistance in your phone!!!\n ",
+                      text: "Legal assistance in your phone ",
                       style:
                           TextStyle(color: Color.fromARGB(255, 10, 12, 12),fontSize: 30)),
+                  TextSpan(text: "!!!\n", style: TextStyle(color: Color(0xff09487e),fontSize: 30)),
                   TextSpan(
                       text: "Lawyers and clients\n",
                       style:
                           TextStyle(color: Color.fromARGB(255, 3, 3, 3),fontSize: 30)),
                   TextSpan(
-                      text: " on one platform\n",
+                      text: "on one platform\n",
                       style:
                           TextStyle(color: Color.fromARGB(255, 8, 8, 8),fontSize: 30))
                 ])),
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: deviceSize.height / 60, left: deviceSize.width / 25),
+                top: deviceSize.height / 500, left: deviceSize.width / 25),
             child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
                 child: InkWell(
                   onTap: () {
                     showModalBottomSheet(
@@ -182,21 +188,21 @@ class _SplashPageState extends State<SplashPage> {
                             borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(20))));
                   },
-                  child: Center(
+                  
                     child: Container(
                       width: deviceSize.width / 4.5,
                       height: deviceSize.height / 20,
                       decoration: BoxDecoration(
-                          color: Colors.grey.shade900,
+                          color: Color.fromARGB(255, 48, 115, 173),
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                         child: Text(
                           "Start",
-                          style: TextStyle(color: Colors.white, fontSize: 17),
+                          style: TextStyle(color: Color.fromARGB(255, 1, 5, 9), fontSize: 17, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
-                  ),
+                  
                 )),
           ),
           Expanded(
