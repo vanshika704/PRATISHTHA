@@ -2,7 +2,7 @@ import 'package:PRATISHTHA/SOS.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'IPC.dart';//.
+import 'IPC.dart';//..
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
