@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'MyHomePage.dart';
 import 'login.dart';
 
 class Signup extends StatefulWidget {
@@ -17,12 +18,11 @@ class _SignupState extends State<Signup> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
- @override
+  @override
   void initState() {
     super.initState();
+    OnboardController();
   }
-
-  
 
   Future<void> _signUpWithEmailAndPassword() async {
     try {
@@ -66,7 +66,7 @@ class _SignupState extends State<Signup> {
         "Signed in with Google successfully",
         snackPosition: SnackPosition.BOTTOM,
         duration: Duration(seconds: 2),
-      );
+      );Get.off(MyHomePage());
     } catch (e) {
       print("Error signing in with Google: $e");
     }
@@ -77,13 +77,19 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 3, 122, 102),
-        title: Text('SIGN UP', style: TextStyle(color: Colors.white),),
+        title: Text(
+          'SIGN UP',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               Get.to(() => LoginPage());
             },
-            icon: Icon(Icons.person, color: Colors.white,),
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
@@ -113,7 +119,10 @@ class _SignupState extends State<Signup> {
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 3, 122, 102))),
                 onPressed: _signUpWithEmailAndPassword,
-                child: Text('Sign Up', style: TextStyle(color: Colors.white),),
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               SizedBox(height: 16),
               ElevatedButton(
@@ -121,7 +130,8 @@ class _SignupState extends State<Signup> {
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 3, 122, 102))),
                 onPressed: _signInWithGoogle,
-                child: Text('Sign In with Google', style: TextStyle(color: Colors.white)),
+                child: Text('Sign In with Google',
+                    style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

@@ -1,10 +1,10 @@
+import 'package:PRATISHTHA/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'MyHomePage.dart';
-import 'signup.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-
+    OnboardController();
   }
 
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -141,7 +141,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: _signInWithEmailAndPassword,
-                  child: Text('Login with Email/Password', style: TextStyle(color: Colors.white)),
+                  child: Text('Login with Email/Password',
+                      style: TextStyle(color: Colors.white)),
                 ),
                 SizedBox(height: 16),
                 ElevatedButton(
@@ -151,7 +152,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: _handleGoogleSignIn,
-                  child: Text('Sign in with Google', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Sign in with Google',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
