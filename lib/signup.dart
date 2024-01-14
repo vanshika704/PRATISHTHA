@@ -18,10 +18,10 @@ class _SignupState extends State<Signup> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    OnboardController();
   }
 
   Future<void> _signUpWithEmailAndPassword() async {
@@ -141,10 +141,3 @@ class _SignupState extends State<Signup> {
   }
 }
 
-class OnboardController extends GetxController {
-  Future<void> checkLoggedIn() async {
-    if (!(FirebaseAuth.instance.currentUser == null)) {
-      await Get.offNamed("/MyHomePage");
-    }
-  }
-}

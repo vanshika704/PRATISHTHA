@@ -1,7 +1,8 @@
+import 'package:PRATISHTHA/MyHomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import './util.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
@@ -105,12 +106,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  clearLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    print("Prefs Cleared");
-  }
-
   @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;

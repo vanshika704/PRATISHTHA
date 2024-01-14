@@ -1,4 +1,3 @@
-import 'package:PRATISHTHA/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,10 +16,10 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
+  
   @override
   void initState() {
     super.initState();
-    OnboardController();
   }
 
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
@@ -41,7 +40,9 @@ class _LoginPageState extends State<LoginPage> {
         duration: Duration(seconds: 3),
       );
 
-      Get.off(MyHomePage());
+      // offAll islie lagaya hai kyuki login page se pehle signup page bhi hai stack mein
+      // vo bhi remove krna hai
+      Get.offAll(MyHomePage());
     } on FirebaseAuthException catch (e) {
       print("Error: $e");
       Get.snackbar(

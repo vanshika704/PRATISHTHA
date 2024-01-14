@@ -1,8 +1,9 @@
-
+import 'package:PRATISHTHA/MyHomePage.dart';
 import 'package:PRATISHTHA/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'firebase_options.dart';
 import './splash.dart';
@@ -24,7 +25,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(debugShowCheckedModeBanner: false,
       title: 'PRATISHTHA',
-      home: SplashPage(),
+
+      // app initially splash page se start hota hai agar koi user nahi hai to
+      // agar user hai to, home page pe jao
+      home: (FirebaseAuth.instance.currentUser == null) ? SplashPage(): MyHomePage(),
+      
       getPages: [GetPage(name: "/signup", page: () => Signup())],
     );
   }

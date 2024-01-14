@@ -1,4 +1,5 @@
 import 'package:PRATISHTHA/SOS.dart';
+import 'package:PRATISHTHA/categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,6 +13,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Widget> items = [CategoriesPage(), Services()];
+
+  // Initially Select Categories page (remember index starts from 0)
+  int selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.room_service_outlined), label: "Services"),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: "Lawyers"),
+        ],
+        onTap: (index) => setState(() => selectedIndex = index),
+      ),
+      body: items[selectedIndex],
+    );
+  }
+}
+
+class Services extends StatelessWidget {
+  const Services({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
