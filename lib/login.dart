@@ -1,3 +1,4 @@
+import 'package:PRATISHTHA/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,152 +17,181 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
-  
+ final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
   void initState() {
     super.initState();
   }
 
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+ 
+ Future<void> _signInWithEmailAndPassword() async {
+  try {
+    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
 
-  Future<void> _signInWithEmailAndPassword() async {
+    print("Signed in: ${userCredential.user?.uid}");
+
+    Get.snackbar(
+      "Success",
+      "Signed in successfully",
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 2),
+    );
+
+    Get.off(MyHomePage());
+  } on FirebaseAuthException catch (e) {
+    print("Error: $e");
+
+    Get.snackbar(
+      "Error",
+      "Failed to sign in: ${e.message}",
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 3),
+    );
+  }
+}
+
+
+
+  Future<void> _signInWithGoogle() async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
       );
 
-      print("Signed in with email/password: ${userCredential.user?.uid}");
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      print("Signed in with Google: ${userCredential.user?.displayName}");
 
       Get.snackbar(
         "Success",
-        "Signed in successfully",
+        "Signed in with Google successfully",
         snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 3),
+        duration: Duration(seconds: 2),
       );
-
-      // offAll islie lagaya hai kyuki login page se pehle signup page bhi hai stack mein
-      // vo bhi remove krna hai
-      Get.offAll(MyHomePage());
-    } on FirebaseAuthException catch (e) {
-      print("Error: $e");
-      Get.snackbar(
-        "Error",
-        "Failed to sign in: ${e.message}",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 3),
-      );
-    }
-  }
-
-  void _handleGoogleSignIn() async {
-    try {
-      GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-
-      if (googleSignInAccount != null) {
-        GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-
-        AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-
-        UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
-
-        print("Signed in with Google: ${userCredential.user?.uid}");
-
-        Get.snackbar(
-          "Success",
-          "Signed in with Google successfully",
-          snackPosition: SnackPosition.BOTTOM,
-          duration: Duration(seconds: 3),
-        );
-
-        Get.off(MyHomePage());
-      }
-    } catch (error) {
-      print('Error signing in with Google: $error');
-      Get.snackbar(
-        "Error",
-        "Failed to sign in with Google",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 3),
-      );
+      Get.off(MyHomePage());
+    } catch (e) {
+      print("Error signing in with Google: $e");
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        title: Text('LOGIN', style: TextStyle(color: Colors.white)),
-        backgroundColor: Color.fromARGB(255, 3, 122, 102),
-      ),
-      body: Stack(
-        children: [
-          Center(
-            child: Image.asset(
-              'assets/emblem.jpg',
-              fit: BoxFit.fill,
-              height: 400,
-              colorBlendMode: BlendMode.dstATop,
-              color: Colors.white.withOpacity(0.2),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: 80,
+                child: Text(
+                  "Welcome to Pratishtha",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 36,
+                  ),
+                ),
+              ),
+              Image.asset(
+                "assets/emblem.jpg",
+                fit: BoxFit.fill,
+                height: 270,
+                width: 250,
+              ),
+              SizedBox(height: 16),
+              Container(
+                width: 250,
+                height: 30,
+                child: TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
-                    fillColor: Colors.white,
+                    labelStyle: TextStyle(fontWeight: FontWeight.w900),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     filled: true,
+                    fillColor: const Color.fromARGB(255, 192, 191, 191),
                   ),
                 ),
-                SizedBox(height: 16),
-                TextField(
+              ),
+              SizedBox(height: 16),
+              Container(
+                width: 250,
+                height: 30,
+                child: TextField(
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    fillColor: Colors.white,
+                    labelStyle: TextStyle(fontWeight: FontWeight.w900),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10)),
                     filled: true,
+                    fillColor: Color.fromARGB(255, 192, 191, 191),
                   ),
                   obscureText: true,
                 ),
-                SizedBox(height: 16),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 3, 122, 102),
-                    ),
-                  ),
-                  onPressed: _signInWithEmailAndPassword,
-                  child: Text('Login with Email/Password',
-                      style: TextStyle(color: Colors.white)),
-                ),
-                SizedBox(height: 16),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                      Color.fromARGB(255, 3, 122, 102),
-                    ),
-                  ),
-                  onPressed: _handleGoogleSignIn,
-                  child: Text(
-                    'Sign in with Google',
-                    style: TextStyle(color: Colors.white),
+              ),
+              SizedBox(height: 15),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 5, 250, 209),
                   ),
                 ),
-              ],
-            ),
+                onPressed: _signInWithEmailAndPassword,
+                child: Text(
+                  'login',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 7, 7, 7),
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
+              SizedBox(height: 15),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 5, 250, 209),
+                  ),
+                ),
+                onPressed: _signInWithGoogle,
+                child: Text(
+                  'Sign In with Google',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 12, 12, 12),
+                      fontWeight: FontWeight.w900),
+                ),
+              ),SizedBox(height: 15),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 5, 250, 209),
+                  ),
+                ),
+                onPressed: () {
+                  Get.to(Signup());
+                },
+                child: Text(
+                  'Signup',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 12, 12, 12),
+                      fontWeight: FontWeight.w900),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
