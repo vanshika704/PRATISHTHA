@@ -1,8 +1,8 @@
-import 'package:PRATISHTHA/MyHomePage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import './util.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
@@ -118,7 +118,7 @@ class _SplashPageState extends State<SplashPage> {
             padding: EdgeInsets.symmetric(
                 horizontal: deviceSize.width / 30,
                 vertical: deviceSize.height / 30),
-            child: Row(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(width: 10),
                 Text(
@@ -126,6 +126,7 @@ class _SplashPageState extends State<SplashPage> {
                   style: GoogleFonts.lexend(
                     fontWeight: FontWeight.w600,
                     fontSize: 28,
+                    
                   ),
                 )
               ],
@@ -137,8 +138,8 @@ class _SplashPageState extends State<SplashPage> {
                 ),
             child: Positioned.fill(
               child: Image.asset(
-                "assets/justice.png",
-               height: 250,
+                "assets/IMG_20240116_173940.jpg",
+               height: 310,width: 200,
                 fit: BoxFit.fill,
               ),
             ),
@@ -157,16 +158,16 @@ class _SplashPageState extends State<SplashPage> {
                   TextSpan(
                       text: "Legal assistance in your phone ",
                       style:
-                          TextStyle(color: Color.fromARGB(255, 10, 12, 12),fontSize: 30)),
-                  TextSpan(text: "!!!\n", style: TextStyle(color: Color(0xff09487e),fontSize: 30)),
+                          TextStyle(color: Color.fromARGB(255, 10, 12, 12),fontSize: 25)),
+                  TextSpan(text: "!!!\n", style: TextStyle(color: Color(0xff09487e),fontSize: 25)),
                   TextSpan(
                       text: "Lawyers and clients\n",
                       style:
-                          TextStyle(color: Color.fromARGB(255, 3, 3, 3),fontSize: 30)),
+                          TextStyle(color: Color.fromARGB(255, 3, 3, 3),fontSize: 25)),
                   TextSpan(
                       text: "on one platform\n",
                       style:
-                          TextStyle(color: Color.fromARGB(255, 8, 8, 8),fontSize: 30))
+                          TextStyle(color: Color.fromARGB(255, 8, 8, 8),fontSize: 25))
                 ])),
           ),
           Padding(
@@ -188,7 +189,7 @@ class _SplashPageState extends State<SplashPage> {
                       width: deviceSize.width / 4.5,
                       height: deviceSize.height / 20,
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 48, 115, 173),
+                          color: Color.fromARGB(255, 48, 169, 173),
                           borderRadius: BorderRadius.circular(6)),
                       child: Center(
                         child: Text(

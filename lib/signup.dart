@@ -75,30 +75,13 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 3, 122, 102),
-        title: Text(
-          'SIGN UP',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => LoginPage());
-            },
-            icon: Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: [Text("Welcome to Pratishtha",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 30),),
               Image.asset(
                 "assets/emblem.jpg",
                 fit: BoxFit.fill,
