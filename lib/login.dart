@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
  final GoogleSignIn _googleSignIn = GoogleSignIn();
+ 
   @override
   void initState() {
     super.initState();
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
       print("Error signing in with Google: $e");
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
