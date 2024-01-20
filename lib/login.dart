@@ -51,35 +51,37 @@ class _LoginPageState extends State<LoginPage> {
       );
     }
   }
+Future<void> _signInWithGoogle() async {
+  try {
+    final GoogleSignInAccount? googleSignInAccount =
+        await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
 
-  Future<void> _signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount!.authentication;
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+    final UserCredential userCredential =
+        await _auth.signInWithCredential(credential);
 
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
+    print("Signed in with Google: ${userCredential.user?.displayName}");
 
-      print("Signed in with Google: ${userCredential.user?.displayName}");
-
-      Get.snackbar(
-        "Success",
-        "Signed in with Google successfully",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 2),
-      );
-      Get.off(MyHomePage());
-    } catch (e) {
-      print("Error signing in with Google: $e");
-    }
+    Get.snackbar(
+      "Success",
+      "Signed in with Google successfully",
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 2),
+    );
+    Get.off(MyHomePage());
+  } catch (e) {
+    print("Error signing in with Google: $e");
+    print('Unexpected error during Google Sign-In: $e');
   }
+}
+
+ 
 
   @override
   Widget build(BuildContext context) {
