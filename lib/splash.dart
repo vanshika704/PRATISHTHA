@@ -148,7 +148,7 @@ class _SplashPageState extends State<SplashPage> {
             padding: EdgeInsets.only(
                 left: deviceSize.width / 30,
                 right: deviceSize.width / 30,
-                top: deviceSize.height / 1000,
+                top: deviceSize.height / 900,
                 bottom: deviceSize.height / 18),
             child: Text.rich(TextSpan(
                 style: GoogleFonts.lexend(
