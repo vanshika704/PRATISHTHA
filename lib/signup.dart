@@ -24,25 +24,48 @@ class _SignupState extends State<Signup> {
     super.initState();
   }
 
-  Future<void> _signUpWithEmailAndPassword() async {
-    try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-      print("Signed up: ${userCredential.user?.uid}");
-      Get.snackbar(
-        "Success",
-        "Signed up successfully",
-        snackPosition: SnackPosition.BOTTOM,
-        duration: Duration(seconds: 2),
-      );
-      Get.off(LoginPage());
-    } on FirebaseAuthException catch (e) {
-      print("Error: $e");
+ Future<void> _signUpWithEmailAndPassword() async {
+  String email = _emailController.text.trim();
+  String password = _passwordController.text.trim();
+
+  
+  if (email.isEmpty ) {
+    print("Invalid email format");
+    return; 
+  }
+
+  if (password.isEmpty || password.length < 6) {
+    print("Invalid password. Password must be at least 6 characters long");
+    return; 
+  }
+
+  try {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    print("Signed up: ${userCredential.user?.uid}");
+    Get.snackbar(
+      "Success",
+      "Signed up successfully",
+      snackPosition: SnackPosition.BOTTOM,
+      duration: Duration(seconds: 2),
+    );
+    Get.off(LoginPage());
+  } on FirebaseAuthException catch (e) {
+    print("Error: $e");
+
+    // Handle specific errors
+    if (e.code == 'weak-password') {
+      print('The password provided is too weak.');
+    } else if (e.code == 'email-already-in-use') {
+      print('The account already exists for that email.');
+    } else {
+      print('Unexpected error: $e');
     }
   }
+}
+
 
   Future<void> _signInWithGoogle() async {
     try {
