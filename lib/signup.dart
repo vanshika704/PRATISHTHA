@@ -55,7 +55,7 @@ class _SignupState extends State<Signup> {
   } on FirebaseAuthException catch (e) {
     print("Error: $e");
 
-    // Handle specific errors
+   
     if (e.code == 'weak-password') {
       print('The password provided is too weak.');
     } else if (e.code == 'email-already-in-use') {
