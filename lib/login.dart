@@ -17,43 +17,40 @@ class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
- final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   @override
   void initState() {
     super.initState();
   }
 
- 
- Future<void> _signInWithEmailAndPassword() async {
-  try {
-    UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
+  Future<void> _signInWithEmailAndPassword() async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
 
-    print("Signed in: ${userCredential.user?.uid}");
+      print("Signed in: ${userCredential.user?.uid}");
 
-    Get.snackbar(
-      "Success",
-      "Signed in successfully",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 2),
-    );
+      Get.snackbar(
+        "Success",
+        "Signed in successfully",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(seconds: 2),
+      );
 
-    Get.off(MyHomePage());
-  } on FirebaseAuthException catch (e) {
-    print("Error: $e");
+      Get.off(MyHomePage());
+    } on FirebaseAuthException catch (e) {
+      print("Error: $e");
 
-    Get.snackbar(
-      "Error",
-      "Failed to sign in: ${e.message}",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 3),
-    );
+      Get.snackbar(
+        "Error",
+        "Failed to sign in: ${e.message}",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(seconds: 3),
+      );
+    }
   }
-}
-
-
 
   Future<void> _signInWithGoogle() async {
     try {
@@ -100,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w900,
-                    fontSize: 36,
+                    fontSize: 34,
                   ),
                 ),
               ),
@@ -172,7 +169,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: const Color.fromARGB(255, 12, 12, 12),
                       fontWeight: FontWeight.w900),
                 ),
-              ),SizedBox(height: 15),
+              ),
+              SizedBox(height: 15),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
