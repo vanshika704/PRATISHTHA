@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -99,7 +98,6 @@ Widget bottomSheetBuilder(BuildContext context) {
     ),
   );
 }
-
 class SplashPage extends StatefulWidget {
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -111,121 +109,124 @@ class _SplashPageState extends State<SplashPage> {
     Size deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-            child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: deviceSize.width / 30,
-                  vertical: deviceSize.height / 30),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(width: 10),
-                  Text(
-                    "PRATISHTHA",
-                    style: GoogleFonts.lexend(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 28,
-                      
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  
+      body: SafeArea(
+          child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: deviceSize.width / 30,
+                vertical: deviceSize.height / 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 10),
+                Text(
+                  "PRATISHTHA",
+                  style: GoogleFonts.lexend(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 28,
                   ),
-              child: Positioned.fill(
-                child: Image.asset(
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(),
+            child: Column(
+              children: [
+                Image.asset(
                   "assets/IMG_20240116_173940.jpg",
-                 height: 310,width: 200,
+                  height: 310,
+                  width: 200,
                   fit: BoxFit.fill,
                 ),
-              ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: deviceSize.width / 30,
-                  right: deviceSize.width / 30,
-                  top: deviceSize.height / 900,
-                  bottom: deviceSize.height / 18),
-              child: Text.rich(TextSpan(
-                  style: GoogleFonts.lexend(
-                      fontWeight: FontWeight.w600,
-                      fontSize: getAdjustedPixelRatio(context) * 14.2),
-                  children: const [
-                    TextSpan(
-                        text: "Legal assistance in your phone ",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 10, 12, 12),fontSize: 25)),
-                    TextSpan(text: "!!!\n", style: TextStyle(color: Color(0xff09487e),fontSize: 25)),
-                    TextSpan(
-                        text: "Lawyers and clients\n",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 3, 3, 3),fontSize: 25)),
-                    TextSpan(
-                        text: "on one platform\n",
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 8, 8, 8),fontSize: 25))
-                  ])),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: deviceSize.height / 500, left: deviceSize.width / 25),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: InkWell(
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: bottomSheetBuilder,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(20))));
-                    },
-                    
-                      child: Container(
-                        width: deviceSize.width / 4.5,
-                        height: deviceSize.height / 20,
-                        decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 48, 169, 173),
-                            borderRadius: BorderRadius.circular(6)),
-                        child: Center(
-                          child: Text(
-                            "Start",
-                            style: TextStyle(color: Color.fromARGB(255, 1, 5, 9), fontSize: 17, fontWeight: FontWeight.bold),
-                          ),
-                        ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                left: deviceSize.width / 30,
+                right: deviceSize.width / 30,
+                top: deviceSize.height / 900,
+                bottom: deviceSize.height / 18),
+            child: Text.rich(TextSpan(
+                style: GoogleFonts.lexend(
+                    fontWeight: FontWeight.w600,
+                    fontSize: getAdjustedPixelRatio(context) * 14.2),
+                children: const [
+                  TextSpan(
+                      text: "Legal assistance in your phone ",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 10, 12, 12),
+                          fontSize: 25)),
+                  TextSpan(
+                      text: "!!!\n",
+                      style: TextStyle(color: Color(0xff09487e), fontSize: 25)),
+                  TextSpan(
+                      text: "Lawyers and clients\n",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 3, 3, 3), fontSize: 25)),
+                  TextSpan(
+                      text: "on one platform\n",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 8, 8, 8), fontSize: 25))
+                ])),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                top: deviceSize.height / 500, left: deviceSize.width / 25),
+            child: Align(
+                alignment: Alignment.center,
+                child: InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: bottomSheetBuilder,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(20))));
+                  },
+                  child: Container(
+                    width: deviceSize.width / 4.5,
+                    height: deviceSize.height / 20,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 48, 169, 173),
+                        borderRadius: BorderRadius.circular(6)),
+                    child: Center(
+                      child: Text(
+                        "Start",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 1, 5, 9),
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
                       ),
-                    
-                  )),
-            ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: deviceSize.height / 60,
-                      bottom: deviceSize.height / 90),
-                  child: Text.rich(TextSpan(
-                      style: GoogleFonts.lexend(
-                          fontSize: getAdjustedPixelRatio(context) * 5.5),
-                      children: const [
-                        TextSpan(text: "Developed with "),
-                        TextSpan(text: "❤️", style: TextStyle(color: Colors.red)),
-                        TextSpan(text: " By "),
-                        TextSpan(
-                            text: "Ashwathama",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ])),
-                ),
+                    ),
+                  ),
+                )),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: deviceSize.height / 60,
+                    bottom: deviceSize.height / 90),
+                child: Text.rich(TextSpan(
+                    style: GoogleFonts.lexend(
+                        fontSize: getAdjustedPixelRatio(context) * 5.5),
+                    children: const [
+                      TextSpan(text: "Developed with "),
+                      TextSpan(text: "❤️", style: TextStyle(color: Colors.red)),
+                      TextSpan(text: " By "),
+                      TextSpan(
+                          text: "Ashwathama",
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ])),
               ),
-            )
-          ],
-        )),
-      ),
+            ),
+          )
+        ],
+      )),
     );
   }
 }

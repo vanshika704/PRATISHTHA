@@ -22,80 +22,105 @@ class _SignupState extends State<Signup> {
   @override
   void initState() {
     super.initState();
+    _checkUser();
   }
-
- Future<void> _signUpWithEmailAndPassword() async {
-  String email = _emailController.text.trim();
-  String password = _passwordController.text.trim();
-
-  
-  if (email.isEmpty ) {
-    print("Invalid email format");
-    return; 
-  }
-
-  if (password.isEmpty || password.length < 6) {
-    print("Invalid password. Password must be at least 6 characters long");
-    return; 
-  }
-
-  try {
-    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    print("Signed up: ${userCredential.user?.uid}");
-    Get.snackbar(
-      "Success",
-      "Signed up successfully",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 2),
-    );
-    Get.off(LoginPage());
-  } on FirebaseAuthException catch (e) {
-    print("Error: $e");
-
-   
-    if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
-    } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
-    } else {
-      print('Unexpected error: $e');
+  Future<void> _checkUser() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      Get.off(MyHomePage());
     }
   }
-}
 
-Future<void> _signInWithGoogle() async {
-  try {
-    final GoogleSignInAccount? googleSignInAccount =
-        await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
+  Future<void> _signUpWithEmailAndPassword() async {
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
 
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
+    if (email.isEmpty) {
+      Get.snackbar(
+        "Invalid email format",
+        "Email cannot be empty",
+        snackPosition: SnackPosition.TOP,
+        duration: Duration(seconds: 2),
+      );
 
-    final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
+      return;
+    }
 
-    print("Signed in with Google: ${userCredential.user?.displayName}");
+    if (password.isEmpty || password.length < 6) {
+      print("Invalid password. Password must be at least 6 characters long");
+      return;
+    }
 
-    Get.snackbar(
-      "Success",
-      "Signed in with Google successfully",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 2),
-    );
-    Get.off(MyHomePage());
-  } catch (e) {
-    print("Error signing in with Google: $e");
-    print('Unexpected error during Google Sign-In: $e');
+    try {
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      print("Signed up: ${userCredential.user?.uid}");
+      Get.snackbar(
+        "Success",
+        "Signed up successfully",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(seconds: 2),
+      );
+      Get.off(LoginPage());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        Get.snackbar(
+          'Sign Up Failed',
+          'The password provided is too weak. Please choose a stronger password.',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 2),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        Get.snackbar(
+          'Sign Up Failed',
+          'An account already exists for the provided email address. Please use a different email.',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 2),
+        );
+      } else {
+        print('Unexpected error during sign up: $e');
+        Get.snackbar(
+          'Sign Up Failed',
+          'An unexpected error occurred. Please try again.',
+          snackPosition: SnackPosition.BOTTOM,
+          duration: Duration(seconds: 2),
+        );
+      }
+    }
   }
-}
 
+  Future<void> _signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      print("Signed in with Google: ${userCredential.user?.displayName}");
+
+      Get.snackbar(
+        "Success",
+        "Signed in with Google successfully",
+        snackPosition: SnackPosition.BOTTOM,
+        duration: Duration(seconds: 2),
+      );
+      Get.off(MyHomePage());
+    } catch (e) {
+      print("Error signing in with Google: $e");
+      print('Unexpected error during Google Sign-In: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +145,7 @@ Future<void> _signInWithGoogle() async {
               Image.asset(
                 "assets/emblem.jpg",
                 fit: BoxFit.fill,
-                height: 270,
+                height: 250,
                 width: 250,
               ),
               SizedBox(height: 16),
@@ -185,7 +210,8 @@ Future<void> _signInWithGoogle() async {
                       color: const Color.fromARGB(255, 12, 12, 12),
                       fontWeight: FontWeight.w900),
                 ),
-              ),SizedBox(height: 15),
+              ),
+              SizedBox(height: 15),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(

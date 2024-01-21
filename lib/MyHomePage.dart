@@ -1,9 +1,9 @@
+import 'package:PRATISHTHA/IPC.dart';
 import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'IPC.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -15,7 +15,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   List<Widget> items = [CategoriesPage(), Services()];
 
-  // Initially Select Categories page (remember index starts from 0)
   int selectedIndex = 0;
 
   @override
@@ -24,7 +23,8 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.room_service_outlined), label: "Services"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.room_service_outlined), label: "Services"),
           BottomNavigationBarItem(icon: Icon(Icons.category), label: "Lawyers"),
         ],
         onTap: (index) => setState(() => selectedIndex = index),
@@ -41,29 +41,26 @@ class Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
+    return Scaffold(
+        appBar: AppBar(
             backgroundColor: Colors.blueGrey,
             title: const Text(
               "SERVICES....",
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold
-              ),
+                  color: Colors.black,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold),
             )),
-        body:Center( child:
-          SingleChildScrollView(
+        body: Center(
+          child: SingleChildScrollView(
             child: Column(
-              children: [
-                IPC(),
-                SOS()
-              ],
+              children: [IPC(), SOS()],
             ),
           ),
-         
         ));
   }
 }
+
 class IPC extends StatefulWidget {
   const IPC({super.key});
 
@@ -75,8 +72,9 @@ class _IPCState extends State<IPC> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,width: 300,
-       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        height: 60,
+        width: 300,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 152, 214, 245),
@@ -108,6 +106,7 @@ class _IPCState extends State<IPC> {
         ]));
   }
 }
+
 class SOS extends StatefulWidget {
   const SOS({super.key});
 
@@ -118,9 +117,10 @@ class SOS extends StatefulWidget {
 class _SOSState extends State<SOS> {
   @override
   Widget build(BuildContext context) {
-     return Container(
-      height: 60,width: 300,
-       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+    return Container(
+        height: 60,
+        width: 300,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: const Color.fromARGB(255, 152, 214, 245),
@@ -152,5 +152,3 @@ class _SOSState extends State<SOS> {
         ]));
   }
 }
- 
-    

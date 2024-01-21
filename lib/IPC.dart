@@ -10,44 +10,50 @@ class ipc extends StatefulWidget {
 }
 
 class _ipcState extends State<ipc> {
+  List<String> items = List<String>.generate(511, (i) => 'IPC $i');
 
-  List<String> items = List<String>.generate(511, (i) => 'Item $i');
   @override
-   void initState() {
+  void initState() {
     super.initState();
-   
     fetchData();
   }
+
   Future<void> fetchData() async {
-    
-    final response = await http.get(Uri.parse('https://devgan.in/all_sections_ipc.php'));
+    final response =
+        await http.get(Uri.parse('https://devgan.in/all_sections_ipc.php'));
 
     if (response.statusCode == 200) {
-     
       final List<dynamic> data = json.decode(response.body);
 
       setState(() {
-       
         items = data.map((item) => item['name'].toString()).toList();
       });
     } else {
-      
       throw Exception('Failed to load data');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-         
           Expanded(
             child: ListView.builder(
               itemCount: items.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(items[index]),
-                 
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Container(
+                    height: 50,
+                    width: 70,
+                    color: Color.fromARGB(255, 2, 126, 105),
+                    child: ListTile(
+                      key: UniqueKey(),
+                      tileColor: Color.fromARGB(137, 69, 228, 240),
+                      title: Text(items[index + 1]),
+                    ),
+                  ),
                 );
               },
             ),
