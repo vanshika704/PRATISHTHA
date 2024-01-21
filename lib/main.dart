@@ -15,7 +15,9 @@ void main() async {
   await Firebase.initializeApp(
    options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const MyApp(
+   
+  ));
 }
  
 class MyApp extends StatelessWidget {
@@ -26,8 +28,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(debugShowCheckedModeBanner: false,
       title: 'PRATISHTHA',
 
-      // app initially splash page se start hota hai agar koi user nahi hai to
-      // agar user hai to, home page pe jao
+     
       home: (FirebaseAuth.instance.currentUser == null) ? SplashPage(): MyHomePage(),
       
       getPages: [GetPage(name: "/signup", page: () => Signup())],

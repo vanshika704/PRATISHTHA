@@ -36,9 +36,13 @@ class IndividualCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text(category), titleTextStyle: GoogleFonts.lexend(color: Color.fromARGB(255, 4, 19, 33), fontSize: 20), backgroundColor: Color.fromARGB(255, 48, 115, 173),),
-      body: GridView.builder(gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200), itemBuilder: (context, index) {
-        return IndividualPerson(RandomNames(Zone.india).fullName(), AssetImage("assets/user.webp"), Random.secure().nextBool());
+      appBar: AppBar(centerTitle: true, title: Text(category),
+      titleTextStyle: GoogleFonts.lexend(color: Color.fromARGB(255, 4, 19, 33), fontSize: 20),
+       backgroundColor: Color.fromARGB(255, 48, 115, 173),),
+      body: GridView.builder(gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200),
+       itemBuilder: (context, index) {
+        return IndividualPerson(RandomNames(Zone.india).fullName(),
+         AssetImage("assets/user.webp"), Random.secure().nextBool());
       }),
     );
   }
