@@ -39,7 +39,7 @@ dependencies:
   firebase_auth: ^4.16.0
   google_sign_in: ^6.1.6
   shared_preferences: ^2.2.2
-  http: ^1.1.0
+  http: ^1.2.0
   google_fonts: ^6.1.0
   random_name_generator: ^1.2.0
   flutter_facebook_auth: ^6.0.4
