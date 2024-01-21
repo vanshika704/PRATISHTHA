@@ -106,7 +106,7 @@ Future<void> _signInWithGoogle() async {
               Image.asset(
                 "assets/emblem.jpg",
                 fit: BoxFit.fill,
-                height: 270,
+                height: 250,
                 width: 250,
               ),
               SizedBox(height: 16),

@@ -92,7 +92,7 @@ Widget bottomSheetBuilder(BuildContext context) {
               ],
             ),
           ),
-          SizedBox(height: deviceSize.height / 100),
+          SizedBox(height: deviceSize.height / 1200),
         ],
       ),
     ),
@@ -136,7 +136,7 @@ class _SplashPageState extends State<SplashPage> {
               children: [
                 Image.asset(
                   "assets/IMG_20240116_173940.jpg",
-                  height: 310,
+                  height: 300,
                   width: 200,
                   fit: BoxFit.fill,
                 ),
@@ -147,8 +147,8 @@ class _SplashPageState extends State<SplashPage> {
             padding: EdgeInsets.only(
                 left: deviceSize.width / 30,
                 right: deviceSize.width / 30,
-                top: deviceSize.height / 900,
-                bottom: deviceSize.height / 18),
+                top: deviceSize.height / 100,
+               ),
             child: Text.rich(TextSpan(
                 style: GoogleFonts.lexend(
                     fontWeight: FontWeight.w600,
