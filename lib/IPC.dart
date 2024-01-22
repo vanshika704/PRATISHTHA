@@ -19,17 +19,21 @@ class _ipcState extends State<ipc> {
   }
 
   Future<void> fetchData() async {
-    final response =
-        await http.get(Uri.parse('https://devgan.in/all_sections_ipc.php'));
+    try {
+      final response =
+          await http.get(Uri.parse('https://devgan.in/all_sections_ipc.php'));
 
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
 
-      setState(() {
-        items = data.map((item) => item['name'].toString()).toList();
-      });
-    } else {
-      throw Exception('Failed to load data');
+        setState(() {
+          items = data.map((item) => item['name'].toString()).toList();
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (error) {
+      print('error fetching data:$error');
     }
   }
 
@@ -44,15 +48,24 @@ class _ipcState extends State<ipc> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Container(
-                    height: 50,
-                    width: 70,
-                    color: Color.fromARGB(255, 2, 126, 105),
-                    child: ListTile(
+                  child: Stack(
+                    children:[ InkWell(onTap: () { Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => result()),
+                            );},)
+                      ,Container(
+                      height: 50,
+                      width: 70,
+                      color: Color.fromARGB(255, 2, 126, 105),
                       
-                      tileColor: Color.fromARGB(137, 69, 228, 240),
-                      title: Text(items[index + 1]),
-                    ),
+                      child: ListTile(
+                        key:ValueKey<String>(items[index]),
+                        tileColor: Color.fromARGB(137, 69, 228, 240),
+                        title: Text(items[index + 1]),
+                        leading:  Icon(Icons.book_online_rounded),
+                        
+                      ),
+                    ),]
                   ),
                 );
               },
@@ -61,5 +74,18 @@ class _ipcState extends State<ipc> {
         ],
       ),
     );
+  }
+}
+class result extends StatefulWidget {
+  const result({super.key});
+
+  @override
+  State<result> createState() => _resultState();
+}
+
+class _resultState extends State<result> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
