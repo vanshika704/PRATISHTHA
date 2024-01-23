@@ -43,6 +43,7 @@ dependencies:
   google_fonts: ^6.1.0
   random_name_generator: ^1.2.0
   flutter_facebook_auth: ^6.0.4
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:

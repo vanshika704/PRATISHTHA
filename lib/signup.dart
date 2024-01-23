@@ -30,6 +30,7 @@ class _SignupState extends State<Signup> {
       Get.off(MyHomePage());
     }
   }
+  
 
   Future<void> _signUpWithEmailAndPassword() async {
     String email = _emailController.text.trim();
