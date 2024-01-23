@@ -11,8 +11,8 @@ class ipc extends StatefulWidget {
 class _ipcState extends State<ipc> {
   List<String> items = List<String>.generate(511, (i) => 'IPC $i');
 
-  Future<void> _launchURL() async {
-    const url = 'https://devgan.in/all_sections_ipc.php';
+  Future<void> _launchURL(int ipcNumber) async {
+    final url = 'https://devgan.in/ipc/section/$ipcNumber/';
 
     if (await canLaunch(url)) {
       await launch(url);
@@ -24,6 +24,7 @@ class _ipcState extends State<ipc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       body: Column(
         children: [
           Expanded(
@@ -36,17 +37,17 @@ class _ipcState extends State<ipc> {
                     children: [
                       InkWell(
                         onTap: () {
-                          _launchURL();
+                          _launchURL(index + 1);
                         },
-                        child: Container(
+                        child: Container( 
                           height: 80,
                           width: 500,
-                          color: Color.fromARGB(255, 127, 236, 250),
+                          color: Color.fromARGB(255, 130, 240, 248),
                           child: ListTile(
-                            key: ValueKey<String>('${items[index+1]}_$index+1'),
-                            tileColor: Color.fromARGB(136, 130, 240, 248),
+                            key: ValueKey<String>('${items[index]}_$index+1'),
+                            tileColor: Color.fromARGB(136, 159, 241, 247),
                             title: Text(items[index+1]),
-                            leading: Icon(Icons.book,color: Colors.black,),
+                            leading: Icon(Icons.book),
                           ),
                         ),
                       ),
