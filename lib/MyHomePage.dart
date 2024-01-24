@@ -1,9 +1,9 @@
 import 'package:PRATISHTHA/IPC.dart';
 import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/categories_page.dart';
+import 'package:PRATISHTHA/crpc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -54,7 +54,7 @@ class Services extends StatelessWidget {
         body: Center(
           child: SingleChildScrollView(
             child: Column(
-              children: [IPC(), SOS()],
+              children: [IPC(), SOS(),CRPC()],
             ),
           ),
         ));
@@ -146,6 +146,52 @@ class _SOSState extends State<SOS> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const SOSbutton()));
+            },
+            child: Text("click me"),
+          )
+        ]));
+  }
+}
+
+class CRPC extends StatefulWidget {
+  const CRPC({super.key});
+
+  @override
+  State<CRPC> createState() => _CRPCState();
+}
+
+class _CRPCState extends State<CRPC> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 60,
+        width: 300,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 152, 214, 245),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Text(
+            "SOS",
+            style: TextStyle(
+              color: Color.fromARGB(255, 10, 11, 12),
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+            ),
+          ),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.read_more,
+                color: Color.fromARGB(255, 22, 72, 119),
+                size: 25,
+              )),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const crpc()));
             },
             child: Text("click me"),
           )
