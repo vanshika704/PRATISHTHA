@@ -51,12 +51,12 @@ class Services extends StatelessWidget {
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold),
             )),
-        body: Center(
-          child: SingleChildScrollView(
+        body:
+          SingleChildScrollView(
             child: Column(
               children: [IPC(), SOS(),CRPC()],
             ),
-          ),
+          
         ));
   }
 }
