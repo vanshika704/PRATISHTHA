@@ -173,7 +173,7 @@ class _CRPCState extends State<CRPC> {
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
-            "SOS",
+            "CRPC",
             style: TextStyle(
               color: Color.fromARGB(255, 10, 11, 12),
               fontStyle: FontStyle.italic,
