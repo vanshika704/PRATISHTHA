@@ -46,7 +46,7 @@ class _crpcState extends State<crpc> {
                           child: ListTile(
                             key: ValueKey<String>('${items[index]}_$index+1'),
                             tileColor: Color.fromARGB(136, 159, 241, 247),
-                            title: Text(items[index]),
+                            title: Text(items[index+1]),
                             leading: Icon(Icons.book),
                           ),
                         ),
