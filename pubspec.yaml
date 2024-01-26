@@ -44,6 +44,7 @@ dependencies:
   random_name_generator: ^1.2.0
   flutter_facebook_auth: ^6.0.4
   url_launcher: ^6.2.4
+  sqflite: ^2.3.1
 
 dev_dependencies:
   flutter_test:
