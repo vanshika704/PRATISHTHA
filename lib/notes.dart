@@ -45,7 +45,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 await database.insertNote(newNote);
 
                 // TODO: Navigate back to the previous screen or update UI as needed
-                // Navigator.pop(context);
+                // Navigator.push(context);
               },
               child: Text('Save Note'),
             ),
