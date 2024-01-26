@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -114,9 +113,9 @@ class _SplashPageState extends State<SplashPage> {
 
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
-        Get.toNamed("/signup");
+        Get.toNamed("/splash");
       } else {
-        print('User is signed in!');
+        Get.toNamed("/MyHomePage");
       }
     });
   }

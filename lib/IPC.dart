@@ -44,7 +44,7 @@ class _ipcState extends State<ipc> {
                           width: 500,
                           color: Color.fromARGB(255, 130, 240, 248),
                           child: ListTile(
-                            key: ValueKey<String>('${items[index]}_$index+1'),
+                            
                             tileColor: Color.fromARGB(136, 159, 241, 247),
                             title: Text(items[index+1]),
                             leading: Icon(Icons.book),

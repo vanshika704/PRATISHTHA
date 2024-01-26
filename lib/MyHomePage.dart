@@ -55,7 +55,7 @@ class Services extends StatelessWidget {
         body:
           SingleChildScrollView(
             child: Column(
-              children: [IPC(), SOS(),CRPC()],
+              children: [IPC(), SOS(),CRPC(),notes()],
             ),
           
         ));
