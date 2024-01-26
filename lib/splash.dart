@@ -1,15 +1,18 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import './util.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
-  const CustomOutlinedButton(
-      {super.key,
-      required this.deviceSize,
-      required this.title,
-      required this.onTap});
+  const CustomOutlinedButton({
+    super.key,
+    required this.deviceSize,
+    required this.title,
+    required this.onTap,
+  });
 
   final Size deviceSize;
   final String title;
@@ -98,6 +101,7 @@ Widget bottomSheetBuilder(BuildContext context) {
     ),
   );
 }
+
 class SplashPage extends StatefulWidget {
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -105,12 +109,25 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
+  void initState() {
+    super.initState();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Get.toNamed("/signup");
+      } else {
+        print('User is signed in!');
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SafeArea(
-          child: Column(
+        body: SafeArea(
+      child: Column(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(
@@ -145,10 +162,10 @@ class _SplashPageState extends State<SplashPage> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                left: deviceSize.width / 30,
-                right: deviceSize.width / 30,
-                top: deviceSize.height / 100,
-               ),
+              left: deviceSize.width / 30,
+              right: deviceSize.width / 30,
+              top: deviceSize.height / 100,
+            ),
             child: Text.rich(TextSpan(
                 style: GoogleFonts.lexend(
                     fontWeight: FontWeight.w600,
@@ -174,43 +191,47 @@ class _SplashPageState extends State<SplashPage> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: deviceSize.height / 500, left: deviceSize.width / 25),
+              top: deviceSize.height / 500,
+              left: deviceSize.width / 25,
+            ),
             child: Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: bottomSheetBuilder,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(20))));
-                  },
-                  child: Container(
-                    width: deviceSize.width / 4.5,
-                    height: deviceSize.height / 20,
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 48, 169, 173),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Center(
-                      child: Text(
-                        "Start",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 1, 5, 9),
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                      ),
+              alignment: Alignment.center,
+              child: InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: bottomSheetBuilder,
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(20))));
+                },
+                child: Container(
+                  width: deviceSize.width / 4.5,
+                  height: deviceSize.height / 20,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 48, 169, 173),
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Center(
+                    child: Text(
+                      "Start",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 1, 5, 9),
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
-                )),
+                ),
+              ),
+            ),
           ),
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: deviceSize.height / 60,
-                    bottom: deviceSize.height / 90),
+                  top: deviceSize.height / 60,
+                  bottom: deviceSize.height / 90,
+                ),
                 child: Text.rich(TextSpan(
                     style: GoogleFonts.lexend(
                         fontSize: getAdjustedPixelRatio(context) * 5.5),
@@ -226,7 +247,7 @@ class _SplashPageState extends State<SplashPage> {
             ),
           )
         ],
-      )),
-    );
+      ),
+    ));
   }
 }
