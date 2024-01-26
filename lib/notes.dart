@@ -15,7 +15,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Note'),
+        title: Text('Add Note'),backgroundColor: Color.fromARGB(255, 90, 250, 210),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
