@@ -39,13 +39,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                   content: contentController.text,
                 );
 
-                // Save the note to the database
+               
                 NoteDatabase database = NoteDatabase();
                 await database.open();
                 await database.insertNote(newNote);
 
-                // TODO: Navigate back to the previous screen or update UI as needed
-                // Navigator.push(context);
+                
+               
               },
               child: Text('Save Note'),
             ),
@@ -57,7 +57,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
 }
 
 class Note {
-  String? id; // Unique identifier, you can use a package like uuid
+  String? id;
   String title;
   String content;
 

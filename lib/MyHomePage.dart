@@ -2,6 +2,7 @@ import 'package:PRATISHTHA/IPC.dart';
 import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/categories_page.dart';
 import 'package:PRATISHTHA/crpc.dart';
+import 'package:PRATISHTHA/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -192,6 +193,51 @@ class _CRPCState extends State<CRPC> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const crpc()));
+            },
+            child: Text("click me"),
+          )
+        ]));
+  }
+}
+class notes extends StatefulWidget {
+  const notes({super.key});
+
+  @override
+  State<notes> createState() => _notesState();
+}
+
+class _notesState extends State<notes> {
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+        height: 60,
+        width: 300,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 152, 214, 245),
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Text(
+            "notes",
+            style: TextStyle(
+              color: Color.fromARGB(255, 10, 11, 12),
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+            ),
+          ),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.read_more,
+                color: Color.fromARGB(255, 22, 72, 119),
+                size: 25,
+              )),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) =>  AddNoteScreen()));
             },
             child: Text("click me"),
           )
