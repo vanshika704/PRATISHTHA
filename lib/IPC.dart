@@ -6,7 +6,7 @@ class ipc extends StatefulWidget {
 
   @override
   State<ipc> createState() => _ipcState();
-}
+}//.
 
 class _ipcState extends State<ipc> {
   List<String> items = List<String>.generate(511, (i) => 'IPC $i');
