@@ -24,7 +24,6 @@ class _ipcState extends State<ipc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: Column(
         children: [
           Expanded(
@@ -39,14 +38,13 @@ class _ipcState extends State<ipc> {
                         onTap: () {
                           _launchURL(index + 1);
                         },
-                        child: Container( 
+                        child: Container(
                           height: 80,
                           width: 500,
                           color: Color.fromARGB(255, 130, 240, 248),
                           child: ListTile(
-                            
                             tileColor: Color.fromARGB(136, 159, 241, 247),
-                            title: Text(items[index+1]),
+                            title: Text(items[index + 1]),
                             leading: Icon(Icons.book),
                           ),
                         ),
