@@ -18,11 +18,13 @@ class _SignupState extends State<Signup> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  final user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
     super.initState();
     _checkUser();
+   
+    _displayUserInfo();
   }
   Future<void> _checkUser() async {
     User? user = _auth.currentUser;
@@ -122,6 +124,35 @@ class _SignupState extends State<Signup> {
       print('Unexpected error during Google Sign-In: $e');
     }
   }
+
+
+
+  void _displayUserInfo() {
+    if (user != null) {
+     
+      final name = user!.displayName;
+      final email = user!.email;
+      final photoUrl = user!.photoURL;
+      final emailVerified = user!.emailVerified;
+      final uid = user!.uid;
+
+ 
+      if (emailVerified) {
+        print("User email is verified");
+      } else {
+        print("User email is not verified");
+      }
+
+   
+      print("Name: $name");
+      print("Email: $email");
+      print("Photo URL: $photoUrl");
+      print("UID: $uid");
+    } else {
+      print("User is not signed in");
+    }
+  }
+
 
 
 
