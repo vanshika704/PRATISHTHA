@@ -1,10 +1,9 @@
-import 'package:PRATISHTHA/IPC.dart';
-import 'package:PRATISHTHA/SOS.dart';
+
 import 'package:PRATISHTHA/categories_page.dart';
-import 'package:PRATISHTHA/crpc.dart';
-import 'package:PRATISHTHA/notes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -52,12 +51,10 @@ class Services extends StatelessWidget {
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold),
             )),
-        body:
-          SingleChildScrollView(
-            child: Column(
-              children: [IPC(), SOS(),CRPC(),notes()],
-            ),
-          
+        body: SingleChildScrollView(
+          child: Column(
+            children: [IPC(), SOS(), CRPC(), notes()],
+          ),
         ));
   }
 }
@@ -99,8 +96,7 @@ class _IPCState extends State<IPC> {
               )),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ipc()));
+              Get.toNamed("/Indian Penal Code");
             },
             child: Text("click me"),
           )
@@ -145,8 +141,7 @@ class _SOSState extends State<SOS> {
               )),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SOSbutton()));
+              Get.toNamed("SOS");
             },
             child: Text("click me"),
           )
@@ -191,14 +186,14 @@ class _CRPCState extends State<CRPC> {
               )),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const crpc()));
+              Get.toNamed("/crpc");
             },
             child: Text("click me"),
           )
         ]));
   }
 }
+
 class notes extends StatefulWidget {
   const notes({super.key});
 
@@ -209,7 +204,7 @@ class notes extends StatefulWidget {
 class _notesState extends State<notes> {
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
         height: 60,
         width: 300,
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -236,8 +231,7 @@ class _notesState extends State<notes> {
               )),
           GestureDetector(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  AddNoteScreen()));
+              Get.toNamed("/notes");
             },
             child: Text("click me"),
           )

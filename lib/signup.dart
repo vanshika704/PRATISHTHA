@@ -172,6 +172,7 @@ class _SignupState extends State<Signup> {
                 width: 250,
                 height: 30,
                 child: TextField(
+                 
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
