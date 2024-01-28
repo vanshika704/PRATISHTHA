@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ipc extends StatefulWidget {
-  const ipc({Key? key}) : super(key: key);
+  const ipc({super.key});
 
   @override
   State<ipc> createState() => _ipcState();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class crpc extends StatefulWidget {
-  const crpc({Key? key}) : super(key: key);
+  const crpc({super.key});
 
   @override
   State<crpc> createState() => _crpcState();
