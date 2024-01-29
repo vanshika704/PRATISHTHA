@@ -11,13 +11,14 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+  
 }
-
 class _MyHomePageState extends State<MyHomePage> {
   final user = FirebaseAuth.instance.currentUser;
-  List<Widget> items = [CategoriesPage(), Services()];
+  List<Widget> items = [CategoriesPage(), YourWidget()];
 
   int selectedIndex = 0;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -36,39 +37,73 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Services extends StatelessWidget {final User? user = FirebaseAuth.instance.currentUser;
-   Services({
-    super.key,
+class YourWidget extends StatelessWidget {
+  final User? user = FirebaseAuth.instance.currentUser;
+
+  void _handleAvatarTap() {
     
-  });
+    Get.dialog(
+      AlertDialog(
+        title: Text('User Information'),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Email: ${user?.email}"),
+           
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+             
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        actions:[ CircleAvatar(maxRadius: 15,
-          backgroundColor: Colors.white,
-          child: Text(
-            user?.email ?? "", 
-            style: TextStyle(
-              color: Colors.black,fontSize: 6,
-            ),
-          ),),],
-            title: const Text(
-              "SERVICES....",
-              style: TextStyle(
+        actions: [
+          GestureDetector(
+            onTap: _handleAvatarTap,
+            child: CircleAvatar(
+              maxRadius: 15,
+              backgroundColor: Colors.white,
+              child: Text(
+                user?.email ?? "",
+                style: TextStyle(
                   color: Colors.black,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold),
-            ),),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [IPC(), SOS(), CRPC(), notes()],
+                  fontSize: 6,
+                ),
+              ),
+            ),
           ),
-        ));
+        ],
+        title: const Text(
+          "SERVICES....",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [IPC(), SOS(), CRPC(), notes()],
+        ),
+      ),
+    );
   }
 }
+
 
 class IPC extends StatefulWidget {
   const IPC({super.key});
