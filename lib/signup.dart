@@ -132,7 +132,7 @@ class _SignupState extends State<Signup> {
      
       final name = user!.displayName;
       final email = user!.email;
-      final photoUrl = user!.photoURL;
+      
       final emailVerified = user!.emailVerified;
       final uid = user!.uid;
 
@@ -146,7 +146,7 @@ class _SignupState extends State<Signup> {
    
       print("Name: $name");
       print("Email: $email");
-      print("Photo URL: $photoUrl");
+   
       print("UID: $uid");
     } else {
       print("User is not signed in");

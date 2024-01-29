@@ -1,5 +1,6 @@
 
 import 'package:PRATISHTHA/categories_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final user = FirebaseAuth.instance.currentUser;
   List<Widget> items = [CategoriesPage(), Services()];
 
   int selectedIndex = 0;
@@ -34,23 +36,32 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Services extends StatelessWidget {
-  const Services({
+class Services extends StatelessWidget {final User? user = FirebaseAuth.instance.currentUser;
+   Services({
     super.key,
+    
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey,
+        actions:[ CircleAvatar(maxRadius: 15,
+          backgroundColor: Colors.white,
+          child: Text(
+            user?.email ?? "", 
+            style: TextStyle(
+              color: Colors.black,fontSize: 6,
+            ),
+          ),),],
             title: const Text(
               "SERVICES....",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 30.0,
                   fontWeight: FontWeight.bold),
-            )),
+            ),),
         body: SingleChildScrollView(
           child: Column(
             children: [IPC(), SOS(), CRPC(), notes()],
@@ -96,7 +107,7 @@ class _IPCState extends State<IPC> {
               )),
           GestureDetector(
             onTap: () {
-              Get.toNamed("/Indian Penal Code");
+              Get.toNamed("/IPC");
             },
             child: Text("click me"),
           )
