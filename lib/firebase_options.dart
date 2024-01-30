@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '639289966553',
     projectId: 'backend-9c1e1',
     authDomain: 'backend-9c1e1.firebaseapp.com',
+    databaseURL: 'https://backend-9c1e1-default-rtdb.firebaseio.com/',
     storageBucket: 'backend-9c1e1.appspot.com',
     measurementId: 'G-R5NE5B9HJ5',
   );
