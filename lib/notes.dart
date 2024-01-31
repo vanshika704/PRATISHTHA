@@ -36,7 +36,11 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
               decoration: InputDecoration(labelText: 'Content'),
             ),
             SizedBox(height: 16.0),
-            ElevatedButton(
+            ElevatedButton(style: ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(
+      Color.fromRGBO(147, 245, 220, 1),
+    ),
+  ), 
               onPressed: () {
                 databaseRef.push().set({
                   'title': titleController.text.toString(),
@@ -60,7 +64,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
            ElevatedButton(
   style: ButtonStyle(
     backgroundColor: MaterialStateProperty.all<Color>(
-      Color.fromRGBO(152, 250, 225, 1),
+      Color.fromRGBO(147, 245, 220, 1),
     ),
   ), 
               onPressed: () {

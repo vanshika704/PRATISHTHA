@@ -11,7 +11,7 @@ class Saved extends StatefulWidget {
 
 class _SavedState extends State<Saved> {
   final ref = FirebaseDatabase.instance.ref().child('notes');
-TextEditingController contentController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
