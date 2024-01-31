@@ -10,7 +10,7 @@ class Saved extends StatefulWidget {
 }
 
 class _SavedState extends State<Saved> {
-  final ref = FirebaseDatabase.instance.ref().child('notes');
+  final ref = FirebaseDatabase.instance.reference().child('notes');
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +26,25 @@ class _SavedState extends State<Saved> {
         query: ref,
         itemBuilder: (BuildContext context, DataSnapshot snapshot,
             Animation<double> animation, int index) {
-        
-
        
+print('Snapshot Value: ${snapshot.value}');
 
-          return ListTile(
-            title: Text(snapshot.child('title').value.toString()),
-                    subtitle: Text(snapshot.child('content').value.toString()),
-          );
+if (snapshot.value != null) {
+  final title = snapshot.child('title').value?.toString() ?? 'No Title';
+  final content = snapshot.child('Content').value?.toString() ?? 'No Content';
+
+  print('Title: $title, Content: $content'); 
+
+  return ListTile(
+    title: Text(title),
+    subtitle: Text(content),
+  );
+} else {
+  return Container(child: Text("empty"));
+}
+
         },
       ),
     );
   }
 }
-
