@@ -2,14 +2,15 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
-class saved extends StatefulWidget {
-  const saved({super.key});
+class Saved extends StatefulWidget {
+  const Saved({Key? key}) : super(key: key);
 
   @override
-  State<saved> createState() => _savedState();
+  _SavedState createState() => _SavedState();
 }
 
-class _savedState extends State<saved> {final ref = FirebaseDatabase.instance.ref('notes');
+class _SavedState extends State<Saved> {
+  final ref = FirebaseDatabase.instance.ref().child('notes');
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +24,10 @@ class _savedState extends State<saved> {final ref = FirebaseDatabase.instance.re
       ),
       body: FirebaseAnimatedList(
         query: ref,
-        itemBuilder: (BuildContext context, DataSnapshot snapshot,
-            Animation<double> animation, int index) {
-         return ListTile(
-            title: Text(snapshot.child("content").toString()),
-           
+        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+          return ListTile(
+            title: Text(snapshot.key ?? ''),
+            subtitle: Text(snapshot.child("content").toString()),
           );
         },
       ),
