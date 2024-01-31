@@ -11,7 +11,7 @@ class Saved extends StatefulWidget {
 
 class _SavedState extends State<Saved> {
   final ref = FirebaseDatabase.instance.ref().child('notes');
-
+TextEditingController contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +24,19 @@ class _SavedState extends State<Saved> {
       ),
       body: FirebaseAnimatedList(
         query: ref,
-        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+        itemBuilder: (BuildContext context, DataSnapshot snapshot,
+            Animation<double> animation, int index) {
+        
+
+       
+
           return ListTile(
-            title: Text(snapshot.key ?? ''),
-            subtitle: Text(snapshot.child("content").toString()),
+            title: Text(snapshot.child('title').value.toString()),
+                    subtitle: Text(snapshot.child('content').value.toString()),
           );
         },
       ),
     );
   }
 }
+

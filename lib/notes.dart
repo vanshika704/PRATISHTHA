@@ -19,7 +19,7 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Note'),
-        backgroundColor: Color.fromARGB(255, 90, 250, 210),
+        backgroundColor: Color.fromRGBO(152, 250, 225, 1),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -38,27 +38,42 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                databaseRef
-                    .child('1')
-                    .set({'notes': contentController.text.toString()})
-                    .then((value) {})
-                    .catchError((error, stackTrace) {
-                      Get.snackbar("Error", error.toString(),
-                          duration: Duration(seconds: 3));
-                    });
+                databaseRef.push().set({
+                  'title': titleController.text.toString(),
+                  'Content': contentController.text.toString()
+                }).then((value) {
+                  Get.snackbar("post added", titleController.text.toString(),
+                      duration: Duration(seconds: 3));
+                }).catchError((error, stackTrace) {
+                  Get.snackbar("Error", error.toString(),
+                      duration: Duration(seconds: 3));
+                });
               },
-              child: Text('add Note'),
+              child: Text(
+                'Add Note',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              height: 20,
             ),
            ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,  
-      MaterialPageRoute(builder: (context) => Saved()),
-    );
-  },
-  child: Text('saved'),
-),
-
+  style: ButtonStyle(
+    backgroundColor: MaterialStateProperty.all<Color>(
+      Color.fromRGBO(152, 250, 225, 1),
+    ),
+  ), 
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Saved()),
+                );
+              },
+              child: Text(
+                ' Show Saved',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
