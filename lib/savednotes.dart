@@ -18,9 +18,9 @@ class _SavedState extends State<Saved> {
       appBar: AppBar(
         title: Text(
           'Saved Notes',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: const Color.fromARGB(255, 253, 252, 252), fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromARGB(221, 134, 248, 248),
+        backgroundColor: const Color.fromARGB(255, 46, 30, 24),
       ),
       body: Stack(
         children: [
@@ -48,8 +48,8 @@ class _SavedState extends State<Saved> {
                 print('Title: $title, Content: $content');
 
                 return ListTile(
-                  title: Text(title),
-                  subtitle: Text(content),
+                  title: Text(title,style: TextStyle(color: const Color.fromARGB(255, 253, 252, 252),fontWeight: FontWeight.bold),),
+                  subtitle: Text(content,style: TextStyle(color: const Color.fromARGB(255, 250, 249, 249),fontWeight: FontWeight.bold),),
                 );
               } else {
                 return Container(child: Text("empty"));
