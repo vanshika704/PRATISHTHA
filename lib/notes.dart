@@ -1,6 +1,7 @@
+import 'package:PRATISHTHA/savednotes.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 
 class AddNoteScreen extends StatefulWidget {
   @override
@@ -37,14 +38,30 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                databaseRef.child('1').set({'notes': contentController.text.toString()});
+                databaseRef
+                    .child('1')
+                    .set({'notes': contentController.text.toString()})
+                    .then((value) {})
+                    .catchError((error, stackTrace) {
+                      Get.snackbar("Error", error.toString(),
+                          duration: Duration(seconds: 3));
+                    });
               },
-              child: Text('Save Note'),
+              child: Text('add Note'),
             ),
+           ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,  
+      MaterialPageRoute(builder: (context) => saved()),
+    );
+  },
+  child: Text('saved'),
+),
+
           ],
         ),
       ),
     );
   }
 }
-
