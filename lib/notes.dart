@@ -45,7 +45,11 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                 databaseRef.child(DateTime.now().microsecondsSinceEpoch.toString()).push().set({
                   'id': DateTime.now().microsecondsSinceEpoch.toString(),
                   'title': titleController.text.toString(),
-                  'Content': contentController.text.toString()
+                  'Content': contentController.text.toString(),
+                  'trailing': PopupMenuButton(icon: Icon(Icons.more_vert),
+                    itemBuilder:(context)=>[])
+              
+
                 }).then((value) {
                   Get.snackbar("post added", titleController.text.toString(),
                       duration: Duration(seconds: 3));
@@ -83,5 +87,16 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
         ),
       ),
     );
-  }
+  Future<void> showMyDialogue() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("update"),
+            content: Container(
+              child: TextField(),
+            ),
+          );
+        });
+  }}
 }

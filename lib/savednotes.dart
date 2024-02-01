@@ -18,21 +18,20 @@ class _SavedState extends State<Saved> {
       appBar: AppBar(
         title: Text(
           'Saved Notes',
-          style: TextStyle(color: const Color.fromARGB(255, 253, 252, 252), fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: const Color.fromARGB(255, 253, 252, 252),
+              fontWeight: FontWeight.bold),
         ),
         backgroundColor: const Color.fromARGB(255, 46, 30, 24),
       ),
       body: Stack(
         children: [
-         
           Image.asset(
             "assets/pexels-pixabay-235985.jpg",
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
           ),
-
-         
           FirebaseAnimatedList(
             query: ref,
             itemBuilder: (BuildContext context, DataSnapshot snapshot,
@@ -48,8 +47,18 @@ class _SavedState extends State<Saved> {
                 print('Title: $title, Content: $content');
 
                 return ListTile(
-                  title: Text(title,style: TextStyle(color: const Color.fromARGB(255, 253, 252, 252),fontWeight: FontWeight.bold),),
-                  subtitle: Text(content,style: TextStyle(color: const Color.fromARGB(255, 250, 249, 249),fontWeight: FontWeight.bold),),
+                  title: Text(
+                    title,
+                    style: TextStyle(
+                        color: const Color.fromARGB(255, 253, 252, 252),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(
+                    content,
+                    style: TextStyle(
+                        color: const Color.fromARGB(255, 250, 249, 249),
+                        fontWeight: FontWeight.bold),
+                  ),
                 );
               } else {
                 return Container(child: Text("empty"));
@@ -60,4 +69,6 @@ class _SavedState extends State<Saved> {
       ),
     );
   }
+
+  
 }
