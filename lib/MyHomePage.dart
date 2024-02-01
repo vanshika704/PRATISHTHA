@@ -49,9 +49,9 @@ class YourWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Email: ${user?.email}"),
-           
-          ],
+            ],
         ),
+        contentPadding: EdgeInsets.all(8.0), 
         actions: [
           TextButton(
             onPressed: () {

@@ -42,7 +42,8 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
     ),
   ), 
               onPressed: () {
-                databaseRef.push().set({
+                databaseRef.child(DateTime.now().microsecondsSinceEpoch.toString()).push().set({
+                  'id': DateTime.now().microsecondsSinceEpoch.toString(),
                   'title': titleController.text.toString(),
                   'Content': contentController.text.toString()
                 }).then((value) {
