@@ -2,8 +2,11 @@ import 'package:PRATISHTHA/IPC.dart';
 import 'package:PRATISHTHA/MyHomePage.dart';
 import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/crpc.dart';
+import 'package:PRATISHTHA/lawyer.dart';
 import 'package:PRATISHTHA/notes.dart';
+import 'package:PRATISHTHA/profiles.dart';
 import 'package:PRATISHTHA/signup.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +20,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseFirestore.instance.settings = Settings(
+    persistenceEnabled: true,
+  );
   runApp(const MyApp());
 }
 
@@ -28,9 +34,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'PRATISHTHA',
-      initialRoute: FirebaseAuth.instance.currentUser == null ? "/splash" : "/home",
+      initialRoute:
+          FirebaseAuth.instance.currentUser == null ? "/splash" : "/home",
       getPages: [
-        GetPage(name: "/splash", page: () =>  SplashPage()),
+        GetPage(name: "/splash", page: () => SplashPage()),
+        GetPage(name: "/lawyer", page: () => Lawyer()),
+        GetPage(name: "/profiles", page: () => ListLawyerPage()),
         GetPage(name: "/signup", page: () => Signup()),
         GetPage(name: "/home", page: () => MyHomePage()),
         GetPage(name: "/Indian Penal Code", page: () => ipc()),
