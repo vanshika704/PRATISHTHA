@@ -118,8 +118,8 @@ class _SavedState extends State<Saved> {
               ElevatedButton(
                 onPressed: () {
                   _ref.child(snapshot.key!).update({
-                    'Title': _editController.text,
                     'Content': _editController.text,
+                    
                   }).then((value) {
                     Get.snackbar(
                       "Note Updated",
