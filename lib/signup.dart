@@ -19,20 +19,21 @@ class _SignupState extends State<Signup> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     super.initState();
     _checkUser();
-   
+
     _displayUserInfo();
   }
+
   Future<void> _checkUser() async {
     User? user = _auth.currentUser;
     if (user != null) {
       Get.off(MyHomePage());
     }
   }
-  
 
   Future<void> _signUpWithEmailAndPassword() async {
     String email = _emailController.text.trim();
@@ -125,36 +126,28 @@ class _SignupState extends State<Signup> {
     }
   }
 
-
-
   void _displayUserInfo() {
     if (user != null) {
-     
       final name = user!.displayName;
       final email = user!.email;
-      
+
       final emailVerified = user!.emailVerified;
       final uid = user!.uid;
 
- 
       if (emailVerified) {
         print("User email is verified");
       } else {
         print("User email is not verified");
       }
 
-   
       print("Name: $name");
       print("Email: $email");
-   
+
       print("UID: $uid");
     } else {
       print("User is not signed in");
     }
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -203,7 +196,6 @@ class _SignupState extends State<Signup> {
                 width: 250,
                 height: 30,
                 child: TextField(
-                 
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -268,5 +260,19 @@ class _SignupState extends State<Signup> {
         ),
       ),
     );
+  }
+}
+
+class phoneauth extends StatefulWidget {
+  const phoneauth({super.key});
+
+  @override
+  State<phoneauth> createState() => _phoneauthState();
+}
+
+class _phoneauthState extends State<phoneauth> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
   }
 }
