@@ -1,7 +1,10 @@
-import 'package:PRATISHTHA/lawyer.dart';
+import 'dart:async';
+import 'dart:math';
+
+import 'package:PRATISHTHA/individual_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:random_name_generator/random_name_generator.dart';
 
 class ListLawyerPage extends StatefulWidget {
   ListLawyerPage({Key? key}) : super(key: key);
@@ -14,8 +17,7 @@ class _ListLawyerPageState extends State<ListLawyerPage> {
   final Stream<QuerySnapshot> lawyerStream =
       FirebaseFirestore.instance.collection('lawyer').snapshots();
 
-  CollectionReference lawyers =
-      FirebaseFirestore.instance.collection('lawyer');
+  CollectionReference lawyers = FirebaseFirestore.instance.collection('lawyer');
   Future<void> deleteLawyer(id) {
     print("Lawyer Deleted $id");
     return lawyers
@@ -39,117 +41,35 @@ class _ListLawyerPageState extends State<ListLawyerPage> {
           );
         }
 
-        final List storedocs = [];
-        snapshot.data!.docs.map((DocumentSnapshot document) {
-          Map a = document.data() as Map<String, dynamic>;
-          storedocs.add(a);
+        final List<Map<String, dynamic>> storedocs = [];
+        snapshot.data!.docs.forEach((DocumentSnapshot document) {
+          Map<String, dynamic> a = document.data() as Map<String, dynamic>;
           a['id'] = document.id;
-        }).toList();
+          storedocs.add(a);
+        });
 
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Table(
-              border: TableBorder.all(),
-              columnWidths: const <int, TableColumnWidth>{
-                1: FixedColumnWidth(140),
-              },
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: [
-                TableRow(
-                  children: [
-                    TableCell(
-                      child: Container(
-                        color: Colors.greenAccent,
-                        child: Center(
-                          child: Text(
-                            'Name',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+              ),
+              itemCount: storedocs.length,
+              itemBuilder: (BuildContext context, int index) {
+                return GridTile(
+                  child: Center(
+                    child: Stack(
+                      children:[ IndividualPerson(RandomNames(Zone.india).fullName(),
+         AssetImage("assets/user.webp"), Random.secure().nextBool()),Text(
+                        storedocs[index]['emailid'] ?? '',
+                        style: TextStyle(fontSize: 18.0),
                       ),
-                    ),
-                    TableCell(
-                      child: Container(
-                        color: Colors.greenAccent,
-                        child: Center(
-                          child: Text(
-                            'Email',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    TableCell(
-                      child: Container(
-                        color: Colors.greenAccent,
-                        child: Center(
-                          child: Text(
-                            'Action',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                for (var i = 0; i < storedocs.length; i++) ...[
-                  TableRow(
-                    children: [
-                      TableCell(
-                        child: Center(
-                            child: Text(storedocs[i]['name'],
-                                style: TextStyle(fontSize: 18.0))),
-                      ),
-                      TableCell(
-                        child: Center(
-                            child: Text(storedocs[i]['email'],
-                                style: TextStyle(fontSize: 18.0))),
-                      ),
-                      TableCell(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: () => {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UpdateLawyerPage(
-                                        id: storedocs[i]['id']),
-                                  ),
-                                )
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: Colors.orange,
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () =>
-                                  {deleteLawyer(storedocs[i]['id'])},
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ]),
                   ),
-                ],
-              ],
+                );
+              },
             ),
           ),
         );

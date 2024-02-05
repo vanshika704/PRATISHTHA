@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/crpc", page: () => crpc()),
         GetPage(name: "/notes", page: () => AddNoteScreen()),
         GetPage(name: "/IPC", page: () => ipc()),
-      
+      GetPage(name: "/listlawyers", page: () => ListLawyerPage()),
       ],
     );
   }
