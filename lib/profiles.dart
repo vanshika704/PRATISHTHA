@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:math';
+import 'package:PRATISHTHA/lawyer.dart';
 
-import 'package:PRATISHTHA/individual_category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:random_name_generator/random_name_generator.dart';
+import 'package:flutter/material.dart'; 
 
 class ListLawyerPage extends StatefulWidget {
   ListLawyerPage({Key? key}) : super(key: key);
@@ -18,6 +15,7 @@ class _ListLawyerPageState extends State<ListLawyerPage> {
       FirebaseFirestore.instance.collection('lawyer').snapshots();
 
   CollectionReference lawyers = FirebaseFirestore.instance.collection('lawyer');
+  
   Future<void> deleteLawyer(id) {
     print("Lawyer Deleted $id");
     return lawyers
@@ -33,7 +31,7 @@ class _ListLawyerPageState extends State<ListLawyerPage> {
       stream: lawyerStream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
-          print('Something went Wrong');
+          print('Something went wrong');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -52,28 +50,75 @@ class _ListLawyerPageState extends State<ListLawyerPage> {
           margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-              ),
-              itemCount: storedocs.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GridTile(
-                  child: Center(
-                    child: Stack(
-                      children:[ IndividualPerson(RandomNames(Zone.india).fullName(),
-         AssetImage("assets/user.webp"), Random.secure().nextBool()),Text(
-                        storedocs[index]['emailid'] ?? '',
-                        style: TextStyle(fontSize: 18.0),
-                      ),
-                    ]),
+            child: Table(
+              border: TableBorder.all(color: Colors.black),
+              children: [
+                TableRow(
+                  decoration: BoxDecoration(color: Colors.greenAccent),
+                  children: [
+                    buildTableCell('Name'),
+                    buildTableCell('Email'),
+                    buildTableCell('Action'),
+                  ],
+                ),
+                for (var i = 0; i < storedocs.length; i++) ...[
+                  TableRow(
+                    children: [
+                      buildTableCell(storedocs[i]['name']),
+                      buildTableCell(storedocs[i]['email']),
+                      buildActionTableCell(storedocs[i]['id']),
+                    ],
                   ),
-                );
-              },
+                ],
+              ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget buildTableCell(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 18.0),
+        ),
+      ),
+    );
+  }
+
+  Widget buildActionTableCell(String id) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UpdateLawyerPage(id: id),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.edit,
+              color: Colors.orange,
+            ),
+          ),
+          IconButton(
+            onPressed: () => deleteLawyer(id),
+            icon: Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
