@@ -44,7 +44,7 @@ class _IndividualCategoryState extends State<IndividualCategory> {
                 color: Color.fromARGB(255, 4, 19, 33), fontSize: 20),
             backgroundColor: Color.fromARGB(255, 48, 115, 173),
           ),
-          body: GridView.builder(
+          body: GridView.builder(padding: EdgeInsets.all(20),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
             ),
