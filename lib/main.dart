@@ -4,7 +4,7 @@ import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/crpc.dart';
 import 'package:PRATISHTHA/lawyer.dart';
 import 'package:PRATISHTHA/notes.dart';
-import 'package:PRATISHTHA/profiles.dart';
+
 import 'package:PRATISHTHA/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/splash", page: () => SplashPage()),
         GetPage(name: "/lawyer", page: () => Lawyer()),
-        GetPage(name: "/profiles", page: () => ListLawyerPage()),
+       
         GetPage(name: "/signup", page: () => Signup()),
         GetPage(name: "/home", page: () => MyHomePage()),
         GetPage(name: "/Indian Penal Code", page: () => ipc()),
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/crpc", page: () => crpc()),
         GetPage(name: "/notes", page: () => AddNoteScreen()),
         GetPage(name: "/IPC", page: () => ipc()),
-      GetPage(name: "/listlawyers", page: () => ListLawyerPage()),
+      
       ],
     );
   }
