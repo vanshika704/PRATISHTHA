@@ -47,19 +47,23 @@ class _IndividualCategoryState extends State<IndividualCategory> {
           body: GridView.builder(padding: EdgeInsets.all(20),
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
+               mainAxisSpacing: 10, 
+               crossAxisSpacing: 10,
             ),
             itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  Image.asset("assets/user.webp"),
-                  Text(
-                    storedocs[index]['email'].toString(),
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 255, 254, 254),
-                      fontWeight: FontWeight.bold,
+              return SizedBox(height: 40,
+                child: Stack(
+                  children: [
+                    Image.asset("assets/user.webp"),
+                    Text(
+                      storedocs[index]['name'].toString(),
+                      style: TextStyle(
+                        color: const Color.fromARGB(255, 255, 254, 254),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             },
             itemCount: storedocs.length,

@@ -150,7 +150,7 @@ class _LawyerState extends State<Lawyer> {
                       style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 161, 220, 250)),
                       onPressed: () {
-                        Get.toNamed("/profiles");
+                        Get.toNamed("/home");
                         if (_formKey.currentState!.validate()) {
                           setState(() {
                             name = nameController.text;
