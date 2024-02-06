@@ -53,7 +53,7 @@ class _IndividualCategoryState extends State<IndividualCategory> {
                 children: [
                   Image.asset("assets/user.webp"),
                   Text(
-                    storedocs[index]['Title'].toString(),
+                    storedocs[index]['email'].toString(),
                     style: TextStyle(
                       color: const Color.fromARGB(255, 255, 254, 254),
                       fontWeight: FontWeight.bold,
@@ -69,4 +69,3 @@ class _IndividualCategoryState extends State<IndividualCategory> {
     );
   }
 }
-
