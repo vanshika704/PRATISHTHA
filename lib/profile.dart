@@ -33,21 +33,24 @@ class _profileState extends State<profile> {
         appBar: AppBar(
           title: Text(
             "Email: ${user?.email}",
-            style:
-                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Color.fromARGB(255, 130, 241, 236),
           actions: [
-            CircleAvatar( maxRadius: 15,
-              backgroundColor: Colors.transparent,
-              child: _image!=null ? Image.file(_image!.absolute):Center(child:Text(
-                user?.email ?? "",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 6,
-                ),
-              ),)
-              ),
+            CircleAvatar(
+                maxRadius: 15,
+                backgroundColor: Colors.transparent,
+                child: _image != null
+                    ? Image.file(_image!.absolute)
+                    : Center(
+                        child: Text(
+                          user?.email ?? "",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 6,
+                          ),
+                        ),
+                      )),
           ],
         ),
         body: ListView.builder(
