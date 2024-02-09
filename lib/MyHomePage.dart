@@ -43,7 +43,7 @@ class YourWidget extends StatelessWidget {
 
   void _handleAvatarTap() {
     
-   Get.to(() => profile());
+   Get.to(() => Profile());
   }
 
   @override

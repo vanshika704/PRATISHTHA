@@ -53,7 +53,7 @@ class _LawyerState extends State<Lawyer> {
             Text(
               "Add New Lawyer",
               style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.w900),
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w900,fontSize: 20),
             ),
             ElevatedButton(
               style: ButtonStyle(
