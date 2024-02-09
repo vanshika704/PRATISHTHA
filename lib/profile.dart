@@ -1,11 +1,8 @@
 import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Profile extends StatefulWidget {
@@ -14,7 +11,6 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
-
 class _ProfileState extends State<Profile> {
   final user = FirebaseAuth.instance.currentUser;
   File? _image;
