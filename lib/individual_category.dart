@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class IndividualCategory extends StatefulWidget {
-  final String category;
+  final String category;//.
 
   const IndividualCategory(this.category);
 
