@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -11,10 +13,12 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
+
 class _ProfileState extends State<Profile> {
   final user = FirebaseAuth.instance.currentUser;
   File? _image;
   final picker = ImagePicker();
+  final firebaseStorage = FirebaseStorage.instance;
 
   Future<void> getimage() async {
     if (!kIsWeb) {
@@ -29,12 +33,39 @@ class _ProfileState extends State<Profile> {
         });
       } catch (e) {
         print('Error picking image: $e');
-        Get.snackbar("Error", "Failed to pick image. Please try again.");
+        Get.snackbar("Error", "Failed to pick an image. Please try again.");
       }
     } else {
-      Get.snackbar("Unsupported", "Image picking is not supported on web.");
+      Get.snackbar("Unsupported", "Image picking is not supported on the web.");
     }
   }
+
+  Future<void> addImage() async {
+    if (_image == null) {
+      Get.snackbar("Error", "Please select an image first.");
+      return;
+    }
+
+    try {
+      Reference storageReference =
+          firebaseStorage.ref().child('profile_images/${user?.uid}.jpg');
+      await storageReference.putFile(_image!);
+      String downloadURL = await storageReference.getDownloadURL();
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .update({
+        'profileImageUrl': downloadURL,
+      });
+
+      Get.snackbar("Success", "Image uploaded successfully!");
+    } catch (e) {
+      print('Error uploading image: $e');
+      Get.snackbar("Error", "Failed to upload an image. Please try again.");
+    }
+  }
+
+  Future<void> showImage() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +81,7 @@ class _ProfileState extends State<Profile> {
             maxRadius: 15,
             backgroundColor: Colors.transparent,
             child: _image != null
-                ? Image.file(_image!.absolute)
+                ? Image.file(_image!)
                 : Center(
                     child: Text(
                       user?.email ?? "",
