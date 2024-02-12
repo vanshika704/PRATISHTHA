@@ -57,6 +57,7 @@ dependencies:
   firebase_messaging: ^14.7.14
   lottie: ^3.0.0
   onesignal_flutter: ^5.1.0
+  fl_chart: ^0.66.2
   
 
 dev_dependencies:
