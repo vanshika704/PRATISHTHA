@@ -22,7 +22,7 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text("Categories",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),), titleTextStyle: GoogleFonts.lexend(color: Color.fromARGB(255, 131, 236, 250), fontSize: 20), backgroundColor: Color.fromARGB(255, 48, 115, 173),),
+      appBar: AppBar(centerTitle: true, title: Text("Categories",style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),), titleTextStyle: GoogleFonts.lexend(color: Color.fromARGB(255, 131, 236, 250), fontSize: 20), backgroundColor: Color.fromARGB(255, 124, 252, 245),),
       body: Align(
         alignment: Alignment.center,
         child: ConstrainedBox(

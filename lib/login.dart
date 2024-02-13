@@ -1,9 +1,8 @@
-import 'package:PRATISHTHA/signup.dart';
+import 'package:PRATISHTHA/logins.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import 'MyHomePage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -188,7 +187,8 @@ Future<void> _signInWithGoogle() async {
                       color: const Color.fromARGB(255, 12, 12, 12),
                       fontWeight: FontWeight.w900),
                 ),
-              )
+              ),
+             
             ],
           ),
         ),
