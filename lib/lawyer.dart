@@ -150,7 +150,7 @@ class _LawyerState extends State<Lawyer> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 161, 220, 250)),
+                          backgroundColor: const Color.fromARGB(255, 161, 220, 250)),
                       onPressed: () {
                         Get.toNamed("/home");
                         if (_formKey.currentState!.validate()) {
@@ -181,7 +181,7 @@ class _LawyerState extends State<Lawyer> {
                             color: Colors.black),
                       ),
                       style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 161, 220, 250)),
+                          backgroundColor: const Color.fromARGB(255, 161, 220, 250)),
                     ),
                   ],
                 ),

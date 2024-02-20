@@ -31,16 +31,17 @@ List<List<dynamic>> items = [
 ];
 List<List<dynamic>> routes = [
   ["Criminal", criminal()],
-  ["Family", family()],  
-  ["Civil", civil()],   
-  ["Tax", tax()],    
-  ["Corporate", corporate()],  
-  ["Licenses", licenses()],   
-  ["Cyber", cyber()],   
-  ["Contract", contract()],  
-  ["Immigration", immigration()], 
-  ["Labour", labour()],      
+  ["Family", family()],
+  ["Civil", civil()],
+  ["Tax", tax()],
+  ["Corporate", corporate()],
+  ["Licenses", licenses()],
+  ["Cyber", cyber()],
+  ["Contract", contract()],
+  ["Immigration", immigration()],
+  ["Labour", labour()],
 ];
+
 class loginaslawyer extends StatefulWidget {
   const loginaslawyer({super.key});
 
@@ -325,7 +326,9 @@ class _SignupState extends State<Signup> {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              SizedBox(height: 15,),
+              SizedBox(
+                height: 15,
+              ),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -349,21 +352,3 @@ class _SignupState extends State<Signup> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
