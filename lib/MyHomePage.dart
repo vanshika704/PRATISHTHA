@@ -1,5 +1,6 @@
 
 import 'package:PRATISHTHA/categories_page.dart';
+import 'package:PRATISHTHA/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -42,27 +43,7 @@ class YourWidget extends StatelessWidget {
 
   void _handleAvatarTap() {
     
-    Get.dialog(
-      AlertDialog(
-        title: Text('User Information'),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Email: ${user?.email}"),
-            ],
-        ),
-        contentPadding: EdgeInsets.all(8.0), 
-        actions: [
-          TextButton(
-            onPressed: () {
-             
-              Get.back();
-            },
-            child: Text('OK'),
-          ),
-        ],
-      ),
-    );
+   Get.to(() => Profile());
   }
 
   @override

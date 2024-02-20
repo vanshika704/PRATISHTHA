@@ -42,14 +42,23 @@ dependencies:
   http: ^1.2.0
   google_fonts: ^6.1.0
   random_name_generator: ^1.2.0
-  flutter_facebook_auth: ^6.0.4
+  
   url_launcher: ^6.2.4
   sqflite: ^2.3.1
   path_provider_android: ^2.2.2
   path_provider: ^2.1.2
   cloud_firestore: ^4.14.0
   firebase_database: ^10.4.0
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.4
+  firebase_core_web: ^2.11.3
+  cloud_firestore_web: ^3.10.3
+  intl: ^0.19.0
+  firebase_messaging: ^14.7.14
+  lottie: ^3.0.0
+  onesignal_flutter: ^5.1.0
   fl_chart: ^0.66.2
+  
 
 dev_dependencies:
   flutter_test:

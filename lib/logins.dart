@@ -1,10 +1,80 @@
+import 'package:PRATISHTHA/MyHomePage.dart';
+import 'package:PRATISHTHA/civil.dart';
+import 'package:PRATISHTHA/contract.dart';
+import 'package:PRATISHTHA/corporate.dart';
+import 'package:PRATISHTHA/criminal.dart';
+import 'package:PRATISHTHA/cyber.dart';
+import 'package:PRATISHTHA/family.dart';
+import 'package:PRATISHTHA/immigration.dart';
+import 'package:PRATISHTHA/labour.dart';
+import 'package:PRATISHTHA/lawyer.dart';
+import 'package:PRATISHTHA/licenses.dart';
+import 'package:PRATISHTHA/login.dart';
+import 'package:PRATISHTHA/tax.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'MyHomePage.dart';
-import 'login.dart';
+List<List<dynamic>> items = [
+  ["Criminal", AssetImage("assets/criminal.png")],
+  ["Family", AssetImage("assets/family.png")],
+  ["Civil", AssetImage("assets/civil.webp")],
+  ["Tax", AssetImage("assets/tax.png")],
+  ["Corporate", AssetImage("assets/corporate.png")],
+  ["Licenses", AssetImage("assets/licenses.png")],
+  ["Cyber", AssetImage("assets/cyber.png")],
+  ["Contract", AssetImage("assets/contract.png")],
+  ["Immigration", AssetImage("assets/immigration.png")],
+  ["Labour", AssetImage("assets/labour.png")]
+];
+List<List<dynamic>> routes = [
+  ["Criminal", criminal()],
+  ["Family", family()],  
+  ["Civil", civil()],   
+  ["Tax", tax()],    
+  ["Corporate", corporate()],  
+  ["Licenses", licenses()],   
+  ["Cyber", cyber()],   
+  ["Contract", contract()],  
+  ["Immigration", immigration()], 
+  ["Labour", labour()],      
+];
+class loginaslawyer extends StatefulWidget {
+  const loginaslawyer({super.key});
+
+  @override
+  State<loginaslawyer> createState() => _loginaslawyerState();
+}
+
+class _loginaslawyerState extends State<loginaslawyer> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return ListTile(
+            visualDensity: VisualDensity(vertical: 3),
+            leading: AspectRatio(
+              aspectRatio: 1,
+              child: Image(
+                image: items[index][1],
+                width: 6,
+              ),
+            ),
+            title: Text(items[index][0]),
+            trailing: Icon(Icons.navigate_next_outlined),
+            onTap: () {
+              Get.to(routes[index][1]);
+            },
+          );
+        },
+        itemCount: items.length,
+      ),
+    );
+  }
+}
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -19,20 +89,21 @@ class _SignupState extends State<Signup> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     super.initState();
     _checkUser();
-   
+
     _displayUserInfo();
   }
+
   Future<void> _checkUser() async {
     User? user = _auth.currentUser;
     if (user != null) {
       Get.off(MyHomePage());
     }
   }
-  
 
   Future<void> _signUpWithEmailAndPassword() async {
     String email = _emailController.text.trim();
@@ -125,36 +196,28 @@ class _SignupState extends State<Signup> {
     }
   }
 
-
-
   void _displayUserInfo() {
     if (user != null) {
-     
       final name = user!.displayName;
       final email = user!.email;
-      
+
       final emailVerified = user!.emailVerified;
       final uid = user!.uid;
 
- 
       if (emailVerified) {
         print("User email is verified");
       } else {
         print("User email is not verified");
       }
 
-   
       print("Name: $name");
       print("Email: $email");
-   
+
       print("UID: $uid");
     } else {
       print("User is not signed in");
     }
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +229,7 @@ class _SignupState extends State<Signup> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 80,
+                height: 60,
                 child: Text(
                   "Welcome to Pratishtha",
                   style: TextStyle(
@@ -203,7 +266,6 @@ class _SignupState extends State<Signup> {
                 width: 250,
                 height: 30,
                 child: TextField(
-                 
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -262,7 +324,24 @@ class _SignupState extends State<Signup> {
                       color: const Color.fromARGB(255, 12, 12, 12),
                       fontWeight: FontWeight.w900),
                 ),
-              )
+              ),
+              SizedBox(height: 15,),
+              ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    Color.fromARGB(255, 5, 250, 209),
+                  ),
+                ),
+                onPressed: () {
+                  Get.to(Lawyer());
+                },
+                child: Text(
+                  'Register',
+                  style: TextStyle(
+                      color: const Color.fromARGB(255, 12, 12, 12),
+                      fontWeight: FontWeight.w900),
+                ),
+              ),
             ],
           ),
         ),
@@ -270,3 +349,21 @@ class _SignupState extends State<Signup> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
