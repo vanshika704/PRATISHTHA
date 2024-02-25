@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});//
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
