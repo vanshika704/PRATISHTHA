@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'logins.dart';
 
 class civil extends StatefulWidget {
-  const civil({super.key});//.
+  const civil({super.key});
 
   @override
   State<civil> createState() => _civilState();
