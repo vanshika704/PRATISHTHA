@@ -15,7 +15,7 @@ List<List<dynamic>> items = [
   ["Immigration", AssetImage("assets/immigration.png")],
   ["Labour", AssetImage("assets/labour.png")]
 
-];//.
+];
 
 class CategoriesPage extends StatelessWidget {
 
