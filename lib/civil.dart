@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'logins.dart';//.
+import 'logins.dart';
 
 class civil extends StatefulWidget {
   const civil({super.key});
