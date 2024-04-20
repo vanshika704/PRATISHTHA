@@ -73,7 +73,7 @@ Future<void> _signInWithGoogle() async {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: 2),
     );
-    Get.off(MyHomePage());
+     Get.toNamed("/home");
   } catch (e) {
     print("Error signing in with Google: $e");
     print('Unexpected error during Google Sign-In: $e');
@@ -173,24 +173,7 @@ Future<void> _signInWithGoogle() async {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              SizedBox(height: 15),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                    Color.fromARGB(255, 5, 250, 209),
-                  ),
-                  minimumSize: MaterialStateProperty.all(Size(250, 50)), 
-                ),
-                onPressed: () {
-                  Get.to(Signup());
-                },
-                child: Text(
-                  'Signup',
-                  style: TextStyle(
-                      color: const Color.fromARGB(255, 12, 12, 12),
-                      fontWeight: FontWeight.w900),
-                ),
-              ),
+             
             ],
           ),
         ),
