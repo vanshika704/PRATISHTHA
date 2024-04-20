@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class citizen extends StatefulWidget {
   const citizen({Key? key}) : super(key: key);
@@ -102,7 +103,7 @@ class _citizenState extends State<citizen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    
+                   Get.toNamed("/home");
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber,

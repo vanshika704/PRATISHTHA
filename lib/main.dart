@@ -4,7 +4,8 @@ import 'package:PRATISHTHA/SOS.dart';
 import 'package:PRATISHTHA/citizen.dart';
 import 'package:PRATISHTHA/crpc.dart';
 import 'package:PRATISHTHA/lawyer.dart';
-import 'package:PRATISHTHA/logins.dart';
+import 'package:PRATISHTHA/login.dart';
+
 import 'package:PRATISHTHA/notes.dart';
 
 
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/crpc", page: () => crpc()),
         GetPage(name: "/notes", page: () => AddNoteScreen()),
         GetPage(name: "/IPC", page: () => ipc()),
-      GetPage(name: "/lawyerlogin", page: () => loginaslawyer()),
+      GetPage(name: "/login", page: () => LoginPage()),
       ],
     );
   }

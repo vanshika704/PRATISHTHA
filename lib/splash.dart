@@ -81,7 +81,7 @@ Widget bottomSheetBuilder(BuildContext context) {
                   deviceSize: deviceSize,
                   title: "Lawyer",
                   onTap: () {
-                    Get.toNamed("/lawyerlogin");
+                    Get.toNamed("/login");
                   },
                 ),
                 CustomOutlinedButton(

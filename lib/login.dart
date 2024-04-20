@@ -82,7 +82,7 @@ Future<void> _signInWithGoogle() async {
 
  
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -92,7 +92,7 @@ Future<void> _signInWithGoogle() async {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 80,
+                height: 85,
                 child: Text(
                   "Welcome to Pratishtha",
                   style: TextStyle(
@@ -147,6 +147,7 @@ Future<void> _signInWithGoogle() async {
                   backgroundColor: MaterialStateProperty.all(
                     Color.fromARGB(255, 5, 250, 209),
                   ),
+                  minimumSize: MaterialStateProperty.all(Size(250, 50)), // Set a fixed size for the button
                 ),
                 onPressed: _signInWithEmailAndPassword,
                 child: Text(
@@ -162,10 +163,11 @@ Future<void> _signInWithGoogle() async {
                   backgroundColor: MaterialStateProperty.all(
                     Color.fromARGB(255, 5, 250, 209),
                   ),
+                  minimumSize: MaterialStateProperty.all(Size(250, 50)), 
                 ),
                 onPressed: _signInWithGoogle,
                 child: Text(
-                  'Sign In with Google',
+                  'Google Sign In',
                   style: TextStyle(
                       color: const Color.fromARGB(255, 12, 12, 12),
                       fontWeight: FontWeight.w900),
@@ -177,6 +179,7 @@ Future<void> _signInWithGoogle() async {
                   backgroundColor: MaterialStateProperty.all(
                     Color.fromARGB(255, 5, 250, 209),
                   ),
+                  minimumSize: MaterialStateProperty.all(Size(250, 50)), 
                 ),
                 onPressed: () {
                   Get.to(Signup());
@@ -188,7 +191,6 @@ Future<void> _signInWithGoogle() async {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-             
             ],
           ),
         ),
