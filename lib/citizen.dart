@@ -109,7 +109,7 @@ class _citizenState extends State<citizen> {
                   ),
                   child: Text(
                     "Start",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
