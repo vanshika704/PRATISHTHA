@@ -88,7 +88,7 @@ Widget bottomSheetBuilder(BuildContext context) {
                   deviceSize: deviceSize,
                   title: "Citizen",
                   onTap: () {
-                    Get.toNamed("/signup");
+                    Get.toNamed("/citizen");
                   },
                 ),
               ],

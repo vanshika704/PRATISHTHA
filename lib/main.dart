@@ -1,6 +1,7 @@
 import 'package:PRATISHTHA/IPC.dart';
 import 'package:PRATISHTHA/MyHomePage.dart';
 import 'package:PRATISHTHA/SOS.dart';
+import 'package:PRATISHTHA/citizen.dart';
 import 'package:PRATISHTHA/crpc.dart';
 import 'package:PRATISHTHA/lawyer.dart';
 import 'package:PRATISHTHA/logins.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/splash", page: () => SplashPage()),
         GetPage(name: "/lawyer", page: () => Lawyer()),
-       
+       GetPage(name: "/citizen", page: () => citizen()),
         
         GetPage(name: "/home", page: () => MyHomePage()),
         GetPage(name: "/Indian Penal Code", page: () => ipc()),

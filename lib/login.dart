@@ -141,7 +141,7 @@ Future<void> _signInWithGoogle() async {
                   obscureText: true,
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -156,7 +156,7 @@ Future<void> _signInWithGoogle() async {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
