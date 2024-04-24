@@ -223,28 +223,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
           ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: deviceSize.height / 60,
-                  bottom: deviceSize.height / 90,
-                ),
-                child: Text.rich(TextSpan(
-                    style: GoogleFonts.lexend(
-                        fontSize: getAdjustedPixelRatio(context) * 5.5),
-                    children: const [
-                      TextSpan(text: "Developed with "),
-                      TextSpan(text: "❤️", style: TextStyle(color: Colors.red)),
-                      TextSpan(text: " By "),
-                      TextSpan(
-                          text: "Ashwathama",
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ])),
-              ),
-            ),
-          )
+          
         ],
       ),
     ));
