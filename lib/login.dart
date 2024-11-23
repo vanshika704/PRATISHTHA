@@ -165,7 +165,11 @@ Future<void> _signInWithGoogle() async {
                   ),
                   minimumSize: MaterialStateProperty.all(Size(250, 50)), 
                 ),
-                onPressed: _signInWithGoogle,
+               onPressed: () {
+  Get.offNamed("/home");
+},
+
+                // _signInWithGoogle,
                 child: Text(
                   'Google Sign In',
                   style: TextStyle(
